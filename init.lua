@@ -1,6 +1,6 @@
 require("config.keymap")
 require("config.lazy")
-require("config.colorscheme")
+--require("config.colorscheme")
 -- require("config.lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})
 
 -- -- Enable autosave
@@ -11,5 +11,5 @@ require("config.colorscheme")
 
 -- vim.opt.termguicolors = true
 -- vim.cmd("colorscheme everforest")
--- vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme tokyonight")
 -- vim.cmd("colorscheme nightfox")
