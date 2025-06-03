@@ -61,7 +61,21 @@ return {
             },
           },
         },
+       -- HTML language server
+        html = {},
         
+        -- CSS language server
+        cssls = {},
+        
+        -- Emmet language server (for HTML/CSS snippets)
+        emmet_ls = {
+          filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        },
+
+
+
+
+
         -- JSON language server
         jsonls = {
           settings = {

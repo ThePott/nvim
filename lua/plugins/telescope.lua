@@ -104,7 +104,7 @@ return {{ -- Fuzzy Finder (files, lsp, etc)
     }},
     opts = function()
         local themes = require('telescope.themes')
-        return {{
+        return {
             extensions = {
                 ['ui-select'] = {themes.get_dropdown()}
             },
@@ -121,7 +121,7 @@ return {{ -- Fuzzy Finder (files, lsp, etc)
                     }
                 }
             }
-        }}
+        }
     end,
 
     config = function(_, opts)

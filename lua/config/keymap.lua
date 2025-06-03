@@ -14,7 +14,8 @@ vim.keymap.set("v", "l", "l", { desc = "Move right" })
 vim.keymap.set("v", "i", "k", { desc = "Move up" })
 
 -- Insert mode remappings
-vim.keymap.set("n", "h", "i", { desc = "Insert mode" })
+vim.keymap.set("n", "h", "i", { desc = "Insert mode to left" })
+vim.keymap.set("n", ";", "a", { desc = "Insert mode to right" })
 
 -- Since we've remapped h (normally left) to o (new line below),
 -- we should adjust window navigation as well
@@ -28,13 +29,15 @@ vim.keymap.set("n", "<leader>t", function()
    vim.cmd("cd %:p:h")
    vim.cmd("split | terminal")
    vim.cmd("startinsert")
-end)
+end,
+	{ desc = "[T]erminal open"}
+)
 -- Terminal mode mappings: FAILED
 -- Map Escape or a custom key combination to exit terminal mode
 -- vim.keymap.set("t", "<leader><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
--- vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Add window navigation directly from terminal mode
 -- vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>h", { desc = "Move to left window from terminal" })
