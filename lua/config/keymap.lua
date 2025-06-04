@@ -24,13 +24,15 @@ vim.keymap.set("n", "<C-k>", "<C-w>j", { desc = "Move to below window" })
 vim.keymap.set("n", "<C-i>", "<C-w>k", { desc = "Move to above window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+vim.keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting"})
+
 -- terminal related
 vim.keymap.set("n", "<leader>t", function()
-   vim.cmd("cd %:p:h")
-   vim.cmd("split | terminal")
-   vim.cmd("startinsert")
+    vim.cmd("cd %:p:h")
+    vim.cmd("split | terminal")
+    vim.cmd("startinsert")
 end,
-	{ desc = "[T]erminal open"}
+    { desc = "[T]erminal open"}
 )
 -- Terminal mode mappings: FAILED
 -- Map Escape or a custom key combination to exit terminal mode
@@ -49,12 +51,12 @@ vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- default file navigation (netrw) key mapping
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "netrw",
-  callback = function()
-    -- Remap i to k (up) in netrw buffers
-    vim.api.nvim_buf_set_keymap(0, "n", "i", "k", { noremap = true, silent = true, desc = "Move up in netrw" })
-    -- Remap h to original i functionality in netrw
-    vim.api.nvim_buf_set_keymap(0, "n", "h", "i", { noremap = true, silent = true, desc = "Change listing style" })
-  end,
+    pattern = "netrw",
+    callback = function()
+	-- Remap i to k (up) in netrw buffers
+	vim.api.nvim_buf_set_keymap(0, "n", "i", "k", { noremap = true, silent = true, desc = "Move up in netrw" })
+	-- Remap h to original i functionality in netrw
+	vim.api.nvim_buf_set_keymap(0, "n", "h", "i", { noremap = true, silent = true, desc = "Change listing style" })
+    end,
 })
 
