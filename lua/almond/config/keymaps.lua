@@ -1,33 +1,39 @@
 vim.g.mapleader = " "       -- Space as leader key
-vim.g.maplocalleader = "\\" -- Backslash as local leader
+-- vim.g.maplocalleader = "\\" -- Backslash as local leader
+
+local keymap = vim.keymap -- for conciseness
+
+-- exit insert mode
+keymap.set("i", "ii", "<ESC>", { desc = "ESC with ii"})
+keymap.set("i", "kk", "<ESC>", { desc = "ESC with kk"})
 
 -- Movement remappings
-vim.keymap.set("n", "j", "h", { desc = "Move left" })
-vim.keymap.set("n", "k", "j", { desc = "Move down" })
-vim.keymap.set("n", "l", "l", { desc = "Move right" })
-vim.keymap.set("n", "i", "k", { desc = "Move up" })
+keymap.set("n", "j", "h", { desc = "Move left" })
+keymap.set("n", "k", "j", { desc = "Move down" })
+keymap.set("n", "l", "l", { desc = "Move right" })
+keymap.set("n", "i", "k", { desc = "Move up" })
 
 -- Also apply the movement remappings to visual mode
-vim.keymap.set("v", "j", "h", { desc = "Move left" })
-vim.keymap.set("v", "k", "j", { desc = "Move down" })
-vim.keymap.set("v", "l", "l", { desc = "Move right" })
-vim.keymap.set("v", "i", "k", { desc = "Move up" })
+keymap.set("v", "j", "h", { desc = "Move left" })
+keymap.set("v", "k", "j", { desc = "Move down" })
+keymap.set("v", "l", "l", { desc = "Move right" })
+keymap.set("v", "i", "k", { desc = "Move up" })
 
 -- Insert mode remappings
-vim.keymap.set("n", "h", "i", { desc = "Insert mode to left" })
-vim.keymap.set("n", ";", "a", { desc = "Insert mode to right" })
+keymap.set("n", "h", "i", { desc = "Insert mode to left" })
+keymap.set("n", ";", "a", { desc = "Insert mode to right" })
 
 -- Since we've remapped h (normally left) to o (new line below),
 -- we should adjust window navigation as well
-vim.keymap.set("n", "<C-j>", "<C-w>h", { desc = "Move to left window" })
-vim.keymap.set("n", "<C-k>", "<C-w>j", { desc = "Move to below window" })
-vim.keymap.set("n", "<C-i>", "<C-w>k", { desc = "Move to above window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+keymap.set("n", "<C-j>", "<C-w>h", { desc = "Move to left window" })
+keymap.set("n", "<C-k>", "<C-w>j", { desc = "Move to below window" })
+keymap.set("n", "<C-i>", "<C-w>k", { desc = "Move to above window" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
-vim.keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting"})
+keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting"})
 
 -- terminal related
-vim.keymap.set("n", "<leader>t", function()
+keymap.set("n", "<leader>t", function()
     vim.cmd("cd %:p:h")
     vim.cmd("split | terminal")
     vim.cmd("startinsert")
@@ -39,7 +45,7 @@ end,
 -- vim.keymap.set("t", "<leader><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
-vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Add window navigation directly from terminal mode
 -- vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>h", { desc = "Move to left window from terminal" })
