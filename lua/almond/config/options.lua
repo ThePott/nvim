@@ -29,3 +29,7 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
 -- clipboard
 opt.clipboard: append("unnamedplus")
+
+-- split window
+opt.splitright = true  -- New vertical splits go to the right
+opt.splitbelow = false -- Disable automatic horizontal splits

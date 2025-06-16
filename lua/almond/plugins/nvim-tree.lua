@@ -4,6 +4,9 @@ return {
     -- lazy = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
+        -- "Nguyen-Hoang-Nam/nvim-mini-file-icons",
+        -- "Nguyen-Hoang-Nam/mini-file-icons",
+        -- { 'echasnovski/mini.icons', version = '*' },
     },
     opts = {
         view = { 
