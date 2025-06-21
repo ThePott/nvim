@@ -1,6 +1,9 @@
 -- vim.cmd("let g:netrw_liststyle=3")
 
 local opt = vim.opt
+opt.guicursor = ""
+
+opt.scrolloff = 999
 
 opt.relativenumber = true
 opt.number = true

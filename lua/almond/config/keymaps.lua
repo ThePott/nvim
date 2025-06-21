@@ -33,13 +33,33 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting"})
 
 -- terminal related
+
 keymap.set("n", "<leader>t", function()
-    vim.cmd("cd %:p:h")
-    vim.cmd("split | terminal")
+    local function find_project_root()
+        local root_patterns = {".git", ".svn", ".hg", "Makefile", "package.json", "Cargo.toml", "go.mod", "pyproject.toml", "pom.xml"}
+        local current_dir = vim.fn.expand("%:p:h")
+
+        while current_dir ~= "/" do
+            for _, pattern in ipairs(root_patterns) do
+                if vim.fn.isdirectory(current_dir .. "/" .. pattern) == 1 or 
+                    vim.fn.filereadable(current_dir .. "/" .. pattern) == 1 then
+                    return current_dir
+                end
+            end
+            current_dir = vim.fn.fnamemodify(current_dir, ":h")
+        end
+
+        -- Fallback to current file's directory if no root found
+        return vim.fn.expand("%:p:h")
+    end
+    local project_root = find_project_root()
+    vim.cmd("cd " .. project_root)
+    vim.cmd("vsplit | terminal")
     vim.cmd("startinsert")
 end,
     { desc = "[T]erminal open"}
 )
+
 -- Terminal mode mappings: FAILED
 -- Map Escape or a custom key combination to exit terminal mode
 -- vim.keymap.set("t", "<leader><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
@@ -59,10 +79,10 @@ keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "netrw",
     callback = function()
-	-- Remap i to k (up) in netrw buffers
-	vim.api.nvim_buf_set_keymap(0, "n", "i", "k", { noremap = true, silent = true, desc = "Move up in netrw" })
-	-- Remap h to original i functionality in netrw
-	vim.api.nvim_buf_set_keymap(0, "n", "h", "i", { noremap = true, silent = true, desc = "Change listing style" })
+        -- Remap i to k (up) in netrw buffers
+        vim.api.nvim_buf_set_keymap(0, "n", "i", "k", { noremap = true, silent = true, desc = "Move up in netrw" })
+        -- Remap h to original i functionality in netrw
+        vim.api.nvim_buf_set_keymap(0, "n", "h", "i", { noremap = true, silent = true, desc = "Change listing style" })
     end,
 })
 
