@@ -3,43 +3,40 @@ return {
     dependencies = { "kevinhwang91/promise-async" },
 
     opts = {        
-        foldcolumn = 2,
+        foldcolumn = 0,
         foldlevel = 99,
         foldlevelstart = 99,
         foldenable = true,
     },
 
     config = function(_, opts)
-        -- Apply vim options
-        vim.o.foldcolumn = opts.foldcolumn
+        -- Apply vim options FIRST
+        vim.o.foldcolumn = tostring(opts.foldcolumn)
         vim.o.foldlevel = opts.foldlevel
         vim.o.foldlevelstart = opts.foldlevelstart
         vim.o.foldenable = opts.foldenable
 
+        -- Enable LSP folding capabilities BEFORE setting up UFO
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+        }
+
+        -- Apply to existing LSP clients
+        for _, client in pairs(vim.lsp.get_clients()) do
+            if client.server_capabilities then
+                client.server_capabilities.foldingRangeProvider = true
+            end
+        end
+
         -- Setup UFO with provider selector for your languages
         require('ufo').setup({
             provider_selector = function(bufnr, filetype, buftype)
-                -- Configure providers for your languages
-                local providers = {
-                    python = {'lsp', 'treesitter'},
-                    javascript = {'lsp', 'treesitter'},
-                    typescript = {'lsp', 'treesitter'},
-                    typescriptreact = {'lsp', 'treesitter'},
-                    html = {'lsp', 'treesitter'},
-                    css = {'lsp', 'treesitter'},
-                    json = {'lsp', 'treesitter'},
-                    lua = {'lsp', 'treesitter'},
-                }
-                return providers[filetype] or {'treesitter', 'indent'}
+                -- Start with treesitter for reliability, fallback to indent
+                return {'treesitter', 'indent'}
             end,
-            -- Disable any default close behavior
-            close_fold_kinds_for_ft = {},
         })
-
-        -- DISABLE all default UFO keymaps to prevent conflicts
-        -- UFO doesn't set many defaults, but this ensures clean slate
-        pcall(vim.keymap.del, 'n', 'zR')
-        pcall(vim.keymap.del, 'n', 'zM')
     end,
 
     keys = {
@@ -63,9 +60,11 @@ return {
         { 
             "zk", 
             function() 
-                -- Open folds one level at a time
-                local current_level = vim.wo.foldlevel
-                vim.wo.foldlevel = current_level + 1
+                -- Increase fold level gradually
+                local current = vim.wo.foldlevel
+                if current < 99 then
+                    vim.wo.foldlevel = current + 1
+                end
             end, 
             desc = "Expand more in file" 
         },
