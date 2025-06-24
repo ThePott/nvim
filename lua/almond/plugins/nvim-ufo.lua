@@ -1,3 +1,57 @@
+
+local function get_function_siblings_and_self()
+    local ts_utils = require('nvim-treesitter.ts_utils')
+    local parsers = require('nvim-treesitter.parsers')
+    
+    if not parsers.has_parser() then
+        return {}
+    end
+    
+    local cursor_node = ts_utils.get_node_at_cursor()
+    if not cursor_node then
+        return {}
+    end
+    
+    -- Find the function node containing the cursor
+    local function_node = cursor_node
+    while function_node do
+        local node_type = function_node:type()
+        -- Add more function types as needed for different languages
+        if node_type:match("function") or 
+           node_type:match("method") or
+           node_type == "function_definition" or
+           node_type == "function_declaration" then
+            break
+        end
+        function_node = function_node:parent()
+    end
+    
+    if not function_node then
+        return {}
+    end
+    
+    -- Get the parent scope
+    local parent = function_node:parent()
+    if not parent then
+        return {}
+    end
+    
+    -- Find all function siblings (including current)
+    local siblings = {}
+    for child in parent:iter_children() do
+        local child_type = child:type()
+        if child_type:match("function") or 
+           child_type:match("method") or
+           child_type == "function_definition" or
+           child_type == "function_declaration" then
+            local start_row = child:start()
+            table.insert(siblings, start_row + 1) -- Convert to 1-indexed
+        end
+    end
+    
+    return siblings
+end
+
 return {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
@@ -43,11 +97,10 @@ return {
         -- File-wide fold operations (your zj/zJ become file operations)
         { 
             "zj", 
-            function() 
-                require("ufo").closeFoldsWith(1) -- Fold more (close to level 1)
-            end, 
+            "zm",
             desc = "Fold more in file" 
         },
+
         { 
             "zJ", 
             function() 
@@ -59,15 +112,10 @@ return {
         -- File-wide expand operations (your zk/zK become file operations)
         { 
             "zk", 
-            function() 
-                -- Increase fold level gradually
-                local current = vim.wo.foldlevel
-                if current < 99 then
-                    vim.wo.foldlevel = current + 1
-                end
-            end, 
+           "zr",
             desc = "Expand more in file" 
         },
+
         { 
             "zK", 
             function() 
@@ -83,50 +131,58 @@ return {
             "zc", -- Standard vim: close fold under cursor
             desc = "Fold current block" 
         },
-        { 
-            "zU", 
-            "zC", -- Standard vim: close fold under cursor recursively  
-            desc = "Fold current block (recursive)" 
-        },
+
         { 
             "zi", 
             "zo", -- Standard vim: open fold under cursor
             desc = "Expand current block" 
         },
-        { 
-            "zI", 
-            "zO", -- Standard vim: open fold under cursor recursively
-            desc = "Expand current block (recursive)" 
-        },
 
         -- Kind-based operations (closest to "sibling" concept)
         { 
-            "zl", 
+            "zU", 
             function() 
-                -- Close specific kinds (comments, imports, etc.)
-                require("ufo").closeFoldsWith(0) -- Most restrictive
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local sibling_lines = get_function_siblings_and_self()
+
+                if #sibling_lines == 0 then
+                    vim.notify("No function siblings found", vim.log.levels.INFO)
+                    return
+                end
+
+                -- Close folds at all sibling function lines
+                for _, line in ipairs(sibling_lines) do
+                    vim.api.nvim_win_set_cursor(0, {line, 0})
+                    vim.cmd('normal! zc')
+                end
+
+                -- Restore cursor position
+                vim.api.nvim_win_set_cursor(0, cursor)
             end, 
-            desc = "Fold by kind" 
-        },
-        { 
-            "z;", 
-            function() 
-                -- Open all except certain kinds
-                require("ufo").openFoldsExceptKinds({'comment'})
-            end, 
-            desc = "Expand except comments" 
+            desc = "Close all sibling functions" 
         },
 
-        -- Bonus: Preview functionality
         { 
-            "zp",
-            function()
-                local winid = require("ufo").peekFoldedLinesUnderCursor()
-                if not winid then
-                    vim.lsp.buf.hover()
+            "zI", 
+            function() 
+                local cursor = vim.api.nvim_win_get_cursor(0)
+                local sibling_lines = get_function_siblings_and_self()
+
+                if #sibling_lines == 0 then
+                    vim.notify("No function siblings found", vim.log.levels.INFO)
+                    return
                 end
-            end,
-            desc = "Peek fold or show hover"
-        }
+
+                -- Open folds at all sibling function lines
+                for _, line in ipairs(sibling_lines) do
+                    vim.api.nvim_win_set_cursor(0, {line, 0})
+                    vim.cmd('normal! zo')
+                end
+
+                -- Restore cursor position
+                vim.api.nvim_win_set_cursor(0, cursor)
+            end, 
+            desc = "Open all sibling functions" 
+        },
     },
 }

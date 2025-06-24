@@ -32,6 +32,8 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting"})
 
+keymap.set('n', '<leader><Esc>', ':noh<CR>', { silent = true })
+
 -- terminal related
 
 keymap.set("n", "<leader>t", function()
