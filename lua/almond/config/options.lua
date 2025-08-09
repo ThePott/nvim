@@ -8,14 +8,12 @@ opt.scrolloff = 99
 opt.relativenumber = true
 opt.number = true
 
-
 -- tabs & indentation
 -- h: autoindent
 opt.tabstop = 4 -- 4 spaces for tabs (need to adjust prettier, prettier default is 2)
 opt.shiftwidth = 4 -- 4 spaces for indent width -- don't know what it means
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
-
 
 opt.wrap = false
 
@@ -27,6 +25,5 @@ opt.background = "dark" -- colorschemes that can be light or dark will be made d
 opt.signcolumn = "no" -- show sign column so that text doesn't shift
 
 -- split window
-opt.splitright = true  -- New vertical splits go to the right
+opt.splitright = true -- New vertical splits go to the right
 opt.splitbelow = false -- Disable automatic horizontal splits
-

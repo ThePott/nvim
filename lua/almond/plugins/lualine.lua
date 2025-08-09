@@ -4,7 +4,12 @@ local function getProjectName()
 	return project_name
 end
 
-print(getProjectName())
+-- print(getProjectName())
+local function getFilePath()
+	return vim.fn.expand("%")
+end
+
+-- print(vim.fn.expand("%"))
 
 return {
 	"nvim-lualine/lualine.nvim",
@@ -14,9 +19,12 @@ return {
 			lualine_a = {
 				"mode",
 				{ getProjectName },
-				-- { [[Hello]] },
-				-- [[Hello]],
 			},
+			lualine_c = {
+				{ getFilePath },
+			},
+			lualine_x = {},
+			lualine_y = {},
 		},
 	},
 }
