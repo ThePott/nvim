@@ -1,10 +1,21 @@
+vim.diagnostic.open_float()
 vim.diagnostic.config({
     virtual_text = true,
     -- virtual_lines = { 
     --     current_line = true,
     --     format = function(diagnostic)
-    --         return diagnostic.message
-    --     end
+    --         -- Split long messages into multiple lines
+    --         local max_width = 100
+    --         local message = diagnostic.message
+    --         if #message > max_width then
+    --             local lines = {}
+    --             for i = 1, #message, max_width do
+    --                 table.insert(lines, message:sub(i, i + max_width - 1))
+    --             end
+    --             return table.concat(lines, '\n')
+    --         end
+    --         return message
+    --     end,
     -- },
     underline = true,
     update_in_insert = false,
@@ -26,24 +37,3 @@ vim.diagnostic.config({
         },
     },
 })
-
--- local function update_diagnostic_display()
---     local line = vim.api.nvim_win_get_cursor(0)[1] - 1
---     vim.diagnostic.config({
---         virtual_text = {
---             format = function(diagnostic)
---                 if diagnostic.lnum == line then
---                     return nil
---                 end
---                 return diagnostic.message
---             end
---         }
---     })
--- end
---
--- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "DiagnosticChanged" }, {
---     callback = update_diagnostic_display,
---     group = vim.api.nvim_create_augroup("DiagnosticDisplay", { clear = true })
--- })
---
--- update_diagnostic_display()

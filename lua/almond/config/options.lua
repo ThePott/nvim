@@ -1,9 +1,9 @@
--- vim.cmd("let g:netrw_liststyle=3")
+vim.cmd("let g:netrw_liststyle=3")
 
 local opt = vim.opt
-opt.guicursor = ""
+-- opt.guicursor = ""
 
-opt.scrolloff = 999
+opt.scrolloff = 99
 
 opt.relativenumber = true
 opt.number = true
@@ -17,22 +17,16 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 
--- opt.wrap = false
+opt.wrap = false
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include upper case in your search, assumes you want case-sensitive
 
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
-
--- backspace
--- he says this makes backspace work as expected, but not sure what it does.
--- opt.backspace = "indent, eol, start"
-
--- clipboard
-opt.clipboard: append("unnamedplus")
+opt.signcolumn = "no" -- show sign column so that text doesn't shift
 
 -- split window
 opt.splitright = true  -- New vertical splits go to the right
 opt.splitbelow = false -- Disable automatic horizontal splits
+

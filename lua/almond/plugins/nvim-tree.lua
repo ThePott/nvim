@@ -1,59 +1,48 @@
+local function files_first_sorter(nodes)
+	table.sort(nodes, function(a, b)
+		-- If one is a file and the other is a directory, file comes first
+		if a.type == "file" and b.type == "directory" then
+			return true
+		elseif a.type == "directory" and b.type == "file" then
+			return false
+		else
+			-- If both are the same type, sort alphabetically by name
+			return a.name < b.name
+		end
+	end)
+end
+
 return {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    -- lazy = false,
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-        -- "Nguyen-Hoang-Nam/nvim-mini-file-icons",
-        -- "Nguyen-Hoang-Nam/mini-file-icons",
-        -- { 'echasnovski/mini.icons', version = '*' },
-    },
-    opts = {
-        view = { 
-            width = 35, 
-            relativenumber = true, 
-            float = { enable = true, 
-                open_win_config = function()
-                    local screen_w = vim.opt.columns:get()
-                    local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-                    local window_w = screen_w * 0.5  -- 50% of screen width
-                    local window_h = screen_h * 0.8  -- 80% of screen height
-                    local window_w_int = math.floor(window_w)
-                    local window_h_int = math.floor(window_h)
-                    local center_x = (screen_w - window_w) / 2
-                    local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
-                    return {
-                        -- border = "rounded",
-                        relative = "editor",
-                        row = center_y,
-                        col = center_x,
-                        width = window_w_int,
-                        height = window_h_int,
-                    }
-                end
-            },
-        },
-        renderer = {
-            indent_markers = { enable = true, }, 
-            icons = { glyphs = { folder = {
-                arrow_closed = "",
-                arrow_open = "",
-            }, }, },
-        },
-        actions = {
-            open_file = {
-                window_picker = { enable = false, },
-                quit_on_open = true,
-            },
-        }, 
-        filters = { 
-            custom = { ".DS_Store" },
-            git_ignored = false,
-        },
-    },
-    keys = {
-        { "<leader>et", "<cmd>NvimTreeToggle<CR>", desc = "[E]xplorer [T]oggle" },
-        { "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "[E]xplorer [R]efresh" },
-        { "<ESC>", "<cmd>NvimTreeClose<CR>", desc = "[ESC]ape explorer" },
-    }
+	"nvim-tree/nvim-tree.lua",
+	version = "*",
+	-- lazy = false,
+	dependencies = { "nvim-material-icon" },
+	opts = {
+		view = {
+			width = 35,
+			relativenumber = true,
+			side = "right",
+		},
+		renderer = {
+			indent_markers = { enable = true },
+			icons = { glyphs = { folder = { arrow_closed = "", arrow_open = "" } } },
+		},
+		actions = {
+			open_file = {
+				window_picker = { enable = false },
+				quit_on_open = true,
+			},
+		},
+		filters = {
+			custom = { ".DS_Store" },
+			git_ignored = false,
+		},
+		sort = { sorter = files_first_sorter },
+	},
+	keys = {
+		{ "<leader>eo", "<cmd>NvimTreeFindFile<CR>", desc = "[E]xplorer [O]pen" },
+		{ "<leader>em", "<cmd>NvimTreeClose<CR>", desc = "[E]xplorer [M]inimize" },
+		{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "[E]xplorer [R]efresh" },
+		{ "<leader>ew", "<cmd>NvimTreeCollapse<CR>", desc = "[E]xplorer collapse u[W]u" },
+	},
 }
