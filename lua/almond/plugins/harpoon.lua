@@ -31,7 +31,7 @@ return {
 		-- Option + 1-9 for files 1-9
 		for i = 1, 9 do
 			table.insert(keys, {
-				"<M-" .. i .. ">", -- M = Meta/Option key on macOS
+				"<C-" .. i .. ">", -- M = Meta/Option key on macOS
 				function()
 					require("harpoon"):list():select(i)
 				end,
@@ -41,7 +41,7 @@ return {
 
 		-- Option + 0, -, = for files 10, 11, 12
 		local extra_keys = {
-			{ "<M-0>", 10, "Harpoon to File 10" },
+			{ "<C-0>", 10, "Harpoon to File 10" },
 		}
 
 		for _, key_info in ipairs(extra_keys) do
