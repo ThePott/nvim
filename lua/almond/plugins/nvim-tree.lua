@@ -40,9 +40,9 @@ return {
 		sort = { sorter = files_first_sorter },
 	},
 	keys = {
-		{ "<leader>eo", "<cmd>NvimTreeFindFile<CR>", desc = "[E]xplorer [O]pen" },
-		{ "<leader>em", "<cmd>NvimTreeClose<CR>", desc = "[E]xplorer [M]inimize" },
-		{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "[E]xplorer [R]efresh" },
-		{ "<leader>ew", "<cmd>NvimTreeCollapse<CR>", desc = "[E]xplorer collapse u[W]u" },
+		{ "<leader>ro", "<cmd>NvimTreeFindFile<CR>", desc = "[E]xplorer [O]pen" },
+		{ "<leader>rm", "<cmd>NvimTreeClose<CR>", desc = "[E]xplorer [M]inimize" },
+		{ "<leader>rr", "<cmd>NvimTreeRefresh<CR>", desc = "[E]xplorer [R]efresh" },
+		{ "<leader>rw", "<cmd>NvimTreeCollapse<CR>", desc = "[E]xplorer collapse u[W]u" },
 	},
 }
