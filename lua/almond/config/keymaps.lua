@@ -47,6 +47,9 @@ end, { desc = "[T]erminal open" })
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
 keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-keymap.set("n", "<leader>r", function()
-	vim.diagnostic.open_float({ focusable = true })
-end, { desc = "Expand an Error into a float" })
+-- keymap.set("n", "<leader>e", "<C-w><C-d>", { desc = "[E]rror message" })
+keymap.set("n", "<leader>fj", "zM", { desc = "[F]old [J]All" })
+keymap.set("n", "<leader>fk", "zR", { desc = "[F]old reveal [K]All" })
+keymap.set("n", "<leader>fh", "zm", { desc = "[F]old [H]More" })
+keymap.set("n", "<leader>fl", "zr", { desc = "[F]old reveal [L]More" })
+keymap.set("n", "<leader>fa", "za", { desc = "[F]old [A]Toggle" })
