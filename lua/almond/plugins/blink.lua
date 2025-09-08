@@ -31,9 +31,9 @@ return {
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "default",
-				["<C-k>"] = { "select_prev", "fallback" },
-				["<C-j>"] = { "select_next", "fallback" },
-				["<C-CR>"] = { "select_and_accept" },
+				["<M-k>"] = { "select_prev", "fallback" },
+				["<M-j>"] = { "select_next", "fallback" },
+				["<M-y>"] = { "select_and_accept" },
 			},
 
 			appearance = {
