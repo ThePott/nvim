@@ -34,6 +34,11 @@ return {
 				["<M-k>"] = { "select_prev", "fallback" },
 				["<M-j>"] = { "select_next", "fallback" },
 				["<M-y>"] = { "select_and_accept" },
+				["<M-space>"] = {
+					function(cmp)
+						cmp.show({ providers = { "snippets" } })
+					end,
+				},
 			},
 
 			appearance = {

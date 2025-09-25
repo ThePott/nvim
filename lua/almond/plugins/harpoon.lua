@@ -26,34 +26,35 @@ return {
 				end,
 				desc = "[H]arpoon [O]pen",
 			},
-		}
-
-		-- Option + 1-9 for files 1-9
-		for i = 1, 9 do
-			table.insert(keys, {
-				"<M-" .. i .. ">", -- M = Meta/Option key on macOS
+			{
+				"<M-n>",
 				function()
-					require("harpoon"):list():select(i)
+					require("harpoon"):list():select(1)
 				end,
-				desc = "Harpoon to File " .. i,
-			})
-		end
-
-		-- Option + 0, -, = for files 10, 11, 12
-		local extra_keys = {
-			{ "<M-0>", 10, "Harpoon to File 10" },
-		}
-
-		for _, key_info in ipairs(extra_keys) do
-			table.insert(keys, {
-				key_info[1],
+				desc = "Harpoon to File 1",
+			},
+			{
+				"<M-m>",
 				function()
-					require("harpoon"):list():select(key_info[2])
+					require("harpoon"):list():select(2)
 				end,
-				desc = key_info[3],
-			})
-		end
-
+				desc = "Harpoon to File 1",
+			},
+			{
+				"<M-,>",
+				function()
+					require("harpoon"):list():select(3)
+				end,
+				desc = "Harpoon to File 1",
+			},
+			{
+				"<M-.>",
+				function()
+					require("harpoon"):list():select(4)
+				end,
+				desc = "Harpoon to File 1",
+			},
+		}
 		return keys
 	end,
 }

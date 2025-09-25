@@ -18,7 +18,7 @@ return {
 		sections = {
 			lualine_a = {
 				"mode",
-				{ getProjectName },
+				-- { getProjectName },
 			},
 			lualine_c = {
 				{ getFilePath },
