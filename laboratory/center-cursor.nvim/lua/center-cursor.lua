@@ -1,14 +1,25 @@
 local M = {}
 local scrolloff = vim.o.scrolloff
 
-print("---- yeah loaded for sure")
+-- print("---- yeah loaded for sure")
 
 local printOnTrigger = function()
 	print("----re-locate-cursor")
 	local win_height = vim.fn.winheight(0)
 
 	vim.o.scrolloff = win_height % 2 == 0 and scrolloff - 1 or scrolloff
+	print("----current offset", vim.o.scrolloff)
 end
 
 M.printOnTrigger = printOnTrigger
+
+M.setup = function()
+	local scrollWatcherGroup = vim.api.nvim_create_augroup("ScrollWatcher", { clear = true })
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "WinScrolled" }, {
+		group = scrollWatcherGroup,
+		pattern = "*",
+		callback = printOnTrigger,
+	})
+end
 return M

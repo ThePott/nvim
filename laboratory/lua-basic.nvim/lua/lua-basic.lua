@@ -1,4 +1,4 @@
-print("---- loaded lua basic file")
+-- print("---- loaded lua basic file")
 
 local M = {}
 

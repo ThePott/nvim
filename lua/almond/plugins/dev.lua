@@ -8,7 +8,7 @@ return {
 	{
 		dir = "~/.config/nvim/laboratory/center-cursor.nvim/",
 		config = function()
-			require("center-cursor")
+			require("center-cursor").setup()
 		end,
 	},
 }
