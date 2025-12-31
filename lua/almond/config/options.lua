@@ -1,7 +1,9 @@
-vim.cmd("let g:netrw_liststyle=3")
+-- vim.cmd("let g:netrw_liststyle=3")
 
 local opt = vim.opt
 -- opt.guicursor = ""
+
+opt.swapfile = false
 
 opt.scrolloff = 99
 
