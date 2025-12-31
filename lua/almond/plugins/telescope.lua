@@ -130,7 +130,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				local action_state = require("telescope.actions.state")
 
 				-- Get directories from fd and prepend "."
-				local handle = io.popen("fd --type d --hidden --exclude .git")
+				local handle = io.popen("fd --type d --exclude /prisma --exclude /generated")
 				local result = handle:read("*a")
 				handle:close()
 
