@@ -40,6 +40,13 @@ keymap.set("n", "<leader>t", function()
 	vim.cmd("startinsert")
 end, { desc = "[T]erminal open" })
 
+keymap.set("n", "<leader>T", function()
+	local current_directory = vim.fn.expand("%:p:h")
+	vim.cmd("cd " .. current_directory)
+	vim.cmd("vsplit | terminal")
+	vim.cmd("startinsert")
+end, { desc = "[T]erminal of Here" })
+
 -- Terminal mode mappings: FAILED
 -- Map Escape or a custom key combination to exit terminal mode
 -- vim.keymap.set("t", "<leader><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
