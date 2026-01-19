@@ -10,7 +10,7 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			markdown = { "prettier" },
-			lua = { "stylua" },
+			lua = { "stylua", "vint" },
 		},
 		format_on_save = {
 			lsp_fallback = true,

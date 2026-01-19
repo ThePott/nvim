@@ -54,4 +54,16 @@ end, { desc = "[T]erminal of Here" })
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
 keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+keymap.set("n", "<leader>ia", function()
+	vim.lsp.buf.code_action({
+		apply = true,
+		filter = function(action)
+			if action.title:match("^Add all missing imports") then
+				return true
+			end
+			return action.title:match("^Add import from")
+		end,
+	})
+end, { desc = "[I]mport [A]ll missing" })
+
 -- keymap.set("n", "<leader>e", "<C-w><C-d>", { desc = "[E]rror message" })

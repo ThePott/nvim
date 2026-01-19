@@ -8,6 +8,7 @@ vim.lsp.enable({
 	"emmet-ls",
 	"prisma-language-server",
 	"zls",
+	"vim-language-server",
 })
 
 vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
