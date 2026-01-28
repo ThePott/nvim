@@ -54,16 +54,34 @@ end, { desc = "[T]erminal of Here" })
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
 keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-keymap.set("n", "<leader>ia", function()
-	vim.lsp.buf.code_action({
-		apply = true,
-		filter = function(action)
-			if action.title:match("^Add all missing imports") then
-				return true
-			end
-			return action.title:match("^Add import from")
-		end,
-	})
-end, { desc = "[I]mport [A]ll missing" })
+vim.keymap.set("n", "<leader>ia", function()
+	local params = vim.lsp.util.make_range_params()
+	params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
+	vim.lsp.buf_request(0, "textDocument/codeAction", params, function(err, actions)
+		if err or not actions or #actions == 0 then
+			print("KEYMAP ERROR: [I]mport [A]ll", err, actions)
+			return
+		end
 
+		-- First, look for "Add all missing imports"
+		for _, action in ipairs(actions) do
+			if action.title:match("^Add all missing imports") then
+				vim.lsp.buf.code_action({
+					apply = true,
+					filter = function(a)
+						return a.title:match("^Add all missing imports")
+					end,
+				})
+				return
+			end
+		end
+		-- Fallback: apply "Add import from"
+		vim.lsp.buf.code_action({
+			apply = true,
+			filter = function(a)
+				return a.title:match("^Add import from") or a.title:match("^Update import from")
+			end,
+		})
+	end)
+end, { desc = "[I]mport [A]ll missing" })
 -- keymap.set("n", "<leader>e", "<C-w><C-d>", { desc = "[E]rror message" })
