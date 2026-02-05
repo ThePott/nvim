@@ -5,6 +5,7 @@ return {
 			"prettier",
 			"stylua",
 			"eslint_d",
+			"typstyle",
 		},
 	},
 }

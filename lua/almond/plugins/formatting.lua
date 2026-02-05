@@ -11,6 +11,7 @@ return {
 			json = { "prettier" },
 			markdown = { "prettier" },
 			lua = { "stylua", "vint" },
+			typst = { "typstyle" },
 		},
 		format_on_save = {
 			lsp_fallback = true,
