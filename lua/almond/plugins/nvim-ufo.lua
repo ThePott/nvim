@@ -88,6 +88,7 @@ return {
 					winblend = 0,
 				},
 			},
+			open_fold_hl_timeout = 0,
 		})
 	end,
 }
