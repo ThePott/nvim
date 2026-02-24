@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"zls",
 	"vim-language-server",
 	"tinymist",
+	-- "sourcekit",
 })
 
 vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
@@ -23,3 +24,13 @@ vim.lsp.config.tinymist = {
 		formatterIndentSize = 4, -- indentation width
 	},
 }
+
+-- vim.lsp.config.sourcekit = {
+-- 	capabilities = {
+-- 		workspace = {
+-- 			didChangeWatchedFiles = {
+-- 				dynamicRegistration = true,
+-- 			},
+-- 		},
+-- 	},
+-- }
