@@ -32,6 +32,6 @@ return {
 			vim.opt.signcolumn = "no"
 		end, { desc = "[G]it diff [H]ide" })
 		vim.keymap.set("n", "<leader>go", show_overlay, { desc = "[G]it [O]verlay" })
-		vim.keymap.set("n", "<leader>gc", hide_overlay, { desc = "[G]it colla[P]se" })
+		vim.keymap.set("n", "<leader>gp", hide_overlay, { desc = "[G]it colla[P]se" })
 	end,
 }
