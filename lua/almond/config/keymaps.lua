@@ -33,7 +33,7 @@ end, { desc = "[T]erminal of Here" })
 -- Optional: Map a more convenient escape that doesn't interfere with shell programs
 keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("n", "<leader>ia", function()
+keymap.set("n", "<leader>ia", function()
 	local params = vim.lsp.util.make_range_params()
 	params.context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics() }
 	vim.lsp.buf_request(0, "textDocument/codeAction", params, function(err, actions)
@@ -63,4 +63,10 @@ vim.keymap.set("n", "<leader>ia", function()
 		})
 	end)
 end, { desc = "[I]mport [A]ll missing" })
--- keymap.set("n", "<leader>e", "<C-w><C-d>", { desc = "[E]rror message" })
+
+keymap.set("n", "<leader>gv", function()
+	vim.opt.signcolumn = "yes"
+end, { desc = "[G]it diff [V]isible" })
+keymap.set("n", "<leader>gh", function()
+	vim.opt.signcolumn = "no"
+end, { desc = "[G]it diff [H]ide" })

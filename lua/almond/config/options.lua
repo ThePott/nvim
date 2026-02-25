@@ -24,7 +24,7 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include upper case in your search, assumes you want case-sensitive
 
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.signcolumn = "no" -- show sign column so that text doesn't shift
 -- opt.signcolumn = "no" -- show sign column so that text doesn't shift
 -- opt.signcolumn = "no" -- show sign column so that text doesn't shift
 -- opt.signcolumn = "no" -- show sign column so that text doesn't shift
