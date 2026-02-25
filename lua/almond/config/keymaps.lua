@@ -63,10 +63,3 @@ keymap.set("n", "<leader>ia", function()
 		})
 	end)
 end, { desc = "[I]mport [A]ll missing" })
-
-keymap.set("n", "<leader>gv", function()
-	vim.opt.signcolumn = "yes"
-end, { desc = "[G]it diff [V]isible" })
-keymap.set("n", "<leader>gh", function()
-	vim.opt.signcolumn = "no"
-end, { desc = "[G]it diff [H]ide" })

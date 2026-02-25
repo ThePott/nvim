@@ -28,16 +28,18 @@ return {
 
 		vim.api.nvim_create_autocmd({ "WinNew" }, {
 			group = vim.api.nvim_create_augroup("Fold", { clear = true }),
-			pattern = "*",
 			callback = function()
 				if
-					vim.o.filetype == "help"
+					vim.o.filetype == "help ss"
 					or vim.o.filetype == "dashboard"
 					or vim.o.filetype == "telescope"
 					or vim.o.filetype == "terminal"
 				then
 					return
 				end
+				-- print("folding............") this is what
+				-- print("folding............")
+				-- print("folding............")
 				-- print("folding............")
 				-- pcall(vim.cmd, '%foldclose!') -- This closes all possible folds
 				pcall(vim.cmd, "%foldclose") -- This is to close only the outer level fold
