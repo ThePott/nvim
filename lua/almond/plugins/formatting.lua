@@ -10,9 +10,10 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			markdown = { "prettier" },
-		lua = { "stylua", "vint" },
-		typst = { "typstyle" },
-		swift = { "swiftformat" },
+			lua = { "stylua", "vint" },
+			typst = { "typstyle" },
+			swift = { "swiftformat" },
+			c = { "clang-format" },
 		},
 		format_on_save = {
 			lsp_fallback = true,

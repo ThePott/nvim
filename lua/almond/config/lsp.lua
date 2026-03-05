@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"zls",
 	"vim-language-server",
 	"tinymist",
+	"clangd",
 	-- "sourcekit",
 })
 
