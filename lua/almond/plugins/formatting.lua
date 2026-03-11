@@ -13,7 +13,7 @@ return {
 			lua = { "stylua", "vint" },
 			typst = { "typstyle" },
 			swift = { "swiftformat" },
-			c = { "clang-format" },
+			c = { "clang_format" },
 		},
 		format_on_save = {
 			lsp_fallback = true,
