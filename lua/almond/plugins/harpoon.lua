@@ -27,49 +27,49 @@ return {
 				desc = "[H]arpoon [O]pen",
 			},
 			{
-				"<C-.>",
+				"<M-.>",
 				function()
 					require("harpoon"):list():select(1)
 				end,
 				desc = "Harpoon to File 1",
 			},
 			{
-				"<C-'>",
+				'<M-">',
 				function()
 					require("harpoon"):list():select(2)
 				end,
 				desc = "Harpoon to File 2",
 			},
 			{
-				"<C-=>",
+				"<M-=>",
 				function()
 					require("harpoon"):list():select(3)
 				end,
 				desc = "Harpoon to File 3",
 			},
 			{
-				"<C-/>",
+				"<M-/>",
 				function()
 					require("harpoon"):list():select(4)
 				end,
 				desc = "Harpoon to File 4",
 			},
 			{
-				"<C-->",
+				"<M-->",
 				function()
 					require("harpoon"):list():select(5)
 				end,
 				desc = "Harpoon to File 5",
 			},
 			{
-				"<C-`>",
+				"<M-`>",
 				function()
 					require("harpoon"):list():select(6)
 				end,
 				desc = "Harpoon to File 6",
 			},
 			{
-				"<C-;>",
+				"<M-;>",
 				function()
 					require("harpoon"):list():select(7)
 				end,
