@@ -66,3 +66,4 @@ end, { desc = "[I]mport [A]ll missing" })
 
 keymap.set("n", "['", "[d", { desc = "Go to previous error" })
 keymap.set("n", "]'", "]d", { desc = "Go to next error" })
+keymap.set({ "i", "n", "v", "c" }, "₩", "`", { noremap = true })

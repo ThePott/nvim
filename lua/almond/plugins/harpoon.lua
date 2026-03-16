@@ -27,53 +27,60 @@ return {
 				desc = "[H]arpoon [O]pen",
 			},
 			{
-				"<M-.>",
+				"<M-n>",
 				function()
 					require("harpoon"):list():select(1)
 				end,
 				desc = "Harpoon to File 1",
 			},
 			{
-				'<M-">',
+				"<M-m>",
 				function()
 					require("harpoon"):list():select(2)
 				end,
 				desc = "Harpoon to File 2",
 			},
 			{
-				"<M-=>",
+				"<M-,>",
 				function()
 					require("harpoon"):list():select(3)
 				end,
 				desc = "Harpoon to File 3",
 			},
 			{
-				"<M-/>",
+				"<M-.>",
 				function()
 					require("harpoon"):list():select(4)
 				end,
 				desc = "Harpoon to File 4",
 			},
 			{
-				"<M-->",
+				"<M-h>",
 				function()
 					require("harpoon"):list():select(5)
 				end,
 				desc = "Harpoon to File 5",
 			},
 			{
-				"<M-`>",
+				"<M-j>",
 				function()
 					require("harpoon"):list():select(6)
 				end,
 				desc = "Harpoon to File 6",
 			},
 			{
-				"<M-;>",
+				"<M-k>",
 				function()
 					require("harpoon"):list():select(7)
 				end,
-				desc = "Harpoon to File 7",
+				desc = "Harpoon to File 5",
+			},
+			{
+				"<M-l>",
+				function()
+					require("harpoon"):list():select(8)
+				end,
+				desc = "Harpoon to File 6",
 			},
 		}
 		return keys

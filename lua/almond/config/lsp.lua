@@ -11,6 +11,8 @@ vim.lsp.enable({
 	"vim-language-server",
 	"tinymist",
 	"clangd",
+	"oxfmt",
+	"oxlint",
 	-- "sourcekit",
 })
 
