@@ -36,3 +36,19 @@
 - Config files: descriptive `options.lua`, `keymaps.lua`
 - Keep related functionality in same file, split when > 200 lines
 
+## question.md / answer.md
+
+When working with `question.md` and `answer.md`:
+
+- **Only edit `answer.md`** — never modify `question.md`
+- Read the question, then write your answer in the answer file
+
+## warn cost when build
+
+- every time when I request build agents to write code by yourself, warn me about the token cost. only write code when I
+  say to proceed. ask me everytime before you write code. you may ask multiple times in a single session
+
+### exception: when you are on following, write files without asking
+
+- `/init`
+- answering `question.md`

@@ -8,7 +8,10 @@ keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting" })
 keymap.set("n", "<leader><Esc>", ":noh<CR>", { silent = true })
 
 keymap.set("n", "<CR>", "o<ESC>", { desc = "Add line below" })
-keymap.set("n", "<leader><CR>", "i<CR><ESC>l", { desc = "Break line at current cursor" })
+
+keymap.set("n", "<M-CR>", "O<ESC>", { desc = "Add line above" })
+
+keymap.set("i", "<M-CR>", "<ESC>O", { desc = "Add line above" })
 -- terminal related
 keymap.set("v", "<leader>y", '"+y', { desc = "yank to system clipboard" })
 

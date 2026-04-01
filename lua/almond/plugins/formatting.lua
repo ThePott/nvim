@@ -2,16 +2,16 @@ return {
 	"stevearc/conform.nvim",
 	opts = {
 		formatters_by_ft = {
-			javascript = { "prettier" },
-			typescript = { "prettier" },
-			javascriptreact = { "prettier" },
-			typescriptreact = { "prettier" },
+			javascript = { "oxfmt", "prettier" },
+			typescript = { "oxfmt", "prettier" },
+			javascriptreact = { "oxfmt", "prettier" },
+			typescriptreact = { "oxfmt", "prettier" },
 			css = { "prettier" },
 			html = { "prettier" },
-			json = { "prettier" },
+			json = { "oxfmt", "prettier" },
 			markdown = { "prettier" },
 			lua = { "stylua", "vint" },
-			typst = { "typstyle" },
+			-- typst = { "typstyle" }, -- NOTE: 이게 없어야 된다. 구체적인 typstyle 연동은 lsp에서 이뤄진다
 			swift = { "swiftformat" },
 			c = { "clang_format" },
 		},
