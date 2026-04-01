@@ -1,31 +1,43 @@
-local dap_path = "/dap/js-debug/src/dapDebugServer.js"
-local make_dap_path = function()
-	local cwd = vim.fn.getcwd()
-	local path = cwd .. dap_path
-	return path
-end
-
 return {
 	"mfussenegger/nvim-dap",
+	dependencies = {
+		"julianolf/nvim-dap-lldb",
+		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio",
+		{ "mason-org/mason.nvim", opts = {} },
+	},
 	config = function()
-		require("dap").adapters["pwa-node"] = {
-			type = "server",
-			host = "localhost",
-			port = "${port}",
-			executable = {
-				command = "node",
-				args = { make_dap_path(), "${port}" },
-			},
-		}
+		local dap = require("dap")
+		local ui = require("dapui")
 
-		require("dap").configurations.javascript = {
-			{
-				type = "pwa-node",
-				request = "launch",
-				name = "Launch file",
-				program = "${file}",
-				cwd = "${workspaceFolder}",
-			},
-		}
+		require("dapui").setup()
+
+		vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
+		vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
+
+		-- Eval var under cursor
+		vim.keymap.set("n", "<space>?", function()
+			require("dapui").eval(nil, { enter = true })
+		end)
+
+		vim.keymap.set("n", "<F1>", dap.continue)
+		vim.keymap.set("n", "<F2>", dap.step_into)
+		vim.keymap.set("n", "<F3>", dap.step_over)
+		vim.keymap.set("n", "<F4>", dap.step_out)
+		vim.keymap.set("n", "<F5>", dap.step_back)
+		vim.keymap.set("n", "<F13>", dap.restart)
+
+		dap.listeners.before.attach.dapui_config = function()
+			ui.open()
+		end
+		dap.listeners.before.launch.dapui_config = function()
+			ui.open()
+		end
+		dap.listeners.before.event_terminated.dapui_config = function()
+			ui.close()
+		end
+		dap.listeners.before.event_exited.dapui_config = function()
+			ui.close()
+		end
 	end,
 }
