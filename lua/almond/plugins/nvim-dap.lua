@@ -1,3 +1,26 @@
+local zig_configuratation = {
+	name = "Launch file",
+	type = "codelldb",
+	request = "launch",
+
+	program = function()
+		-- Run zig build first
+		vim.fn.system("zig build")
+
+		-- Find first file in zig-out/bin/
+		local bin_dir = vim.fn.getcwd() .. "/zig-out/bin"
+		local files = vim.fn.readdir(bin_dir)
+		if #files > 0 then
+			table.sort(files) -- sort alphabetically to get consistent first file
+			return bin_dir .. "/" .. files[1]
+		end
+		vim.notify("No executable found in " .. bin_dir, vim.log.levels.ERROR)
+		return nil
+	end,
+	cwd = "${workspaceFolder}",
+	stopOnEntry = false,
+}
+
 return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
@@ -6,11 +29,32 @@ return {
 		"nvim-neotest/nvim-nio",
 		{ "mason-org/mason.nvim", opts = {} },
 	},
+	priority = 100,
 	config = function()
 		local dap = require("dap")
-		local ui = require("dapui")
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = "codelldb",
+				args = { "--port", "${port}" },
+			},
+		}
+		dap.configurations.zig = {
+			-- https://github.com/julianolf/nvim-dap-lldb
+			-- use `lldb` in type
+			zig_configuratation,
+		}
 
-		require("dapui").setup()
+		local dap_lldb = require("dap-lldb")
+		dap_lldb.setup({
+			configurations = {
+				zig = zig_configuratation,
+			},
+		})
+
+		local ui = require("dapui")
+		ui.setup()
 
 		vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 		vim.keymap.set("n", "<space>gb", dap.run_to_cursor)

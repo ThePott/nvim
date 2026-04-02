@@ -6,6 +6,8 @@ return {
 		MiniDiff.setup({
 			view = {
 				style = "sign",
+				signs = { add = " ", change = " ", delete = " " },
+				priority = 0,
 			},
 		})
 
@@ -25,12 +27,6 @@ return {
 			end
 		end
 
-		vim.keymap.set("n", "<leader>gv", function()
-			vim.opt.signcolumn = "yes"
-		end, { desc = "[G]it diff [V]isible" })
-		vim.keymap.set("n", "<leader>gh", function()
-			vim.opt.signcolumn = "no"
-		end, { desc = "[G]it diff [H]ide" })
 		vim.keymap.set("n", "<leader>go", show_overlay, { desc = "[G]it [O]verlay" })
 		vim.keymap.set("n", "<leader>gp", hide_overlay, { desc = "[G]it colla[P]se" })
 	end,
