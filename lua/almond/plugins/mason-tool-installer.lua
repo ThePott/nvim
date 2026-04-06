@@ -30,6 +30,7 @@ return {
 			"vim-language-server",
 			"tinymist",
 			"clangd",
+			"bash-language-server",
 		},
 	},
 }

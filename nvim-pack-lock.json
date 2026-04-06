@@ -1,0 +1,28 @@
+{
+  "plugins": {
+    "neovim": {
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
+      "src": "https://github.com/rose-pine/neovim"
+    },
+    "nvim": {
+      "rev": "60cf331ed7ecb19617c32bf61eb0da78c4c7bb05",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "onedark": {
+      "rev": "213c23ae45a04797572242568d5d51937181792d",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "onedark.lua": {
+      "rev": "213c23ae45a04797572242568d5d51937181792d",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "onedark.nvim": {
+      "rev": "213c23ae45a04797572242568d5d51937181792d",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "rose-pine": {
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
+      "src": "https://github.com/rose-pine/neovim"
+    }
+  }
+}

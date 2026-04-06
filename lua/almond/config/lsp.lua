@@ -13,6 +13,7 @@ vim.lsp.enable({
 	"clangd",
 	"oxfmt",
 	"oxlint",
+	"bash-language-server",
 	-- "sourcekit",
 })
 
