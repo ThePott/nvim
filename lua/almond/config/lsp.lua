@@ -11,8 +11,6 @@ vim.lsp.enable({
 	"vim-language-server",
 	"tinymist",
 	"clangd",
-	"oxfmt",
-	"oxlint",
 	"bash-language-server",
 	-- "sourcekit",
 })
@@ -43,6 +41,19 @@ vim.lsp.config.tailwindcss = {
 					{ "Record<[\\w\\s|,]+,\\s*TailwindCSS>\\s*=\\s*\\{([\\s\\S]*?)\\}", "[\"'`]([^\"'`]*).*?[\"'`]" },
 				},
 			},
+		},
+	},
+}
+
+-- print(zls_config)
+-- Official ZLS Configuration:
+-- - Schema: https://raw.githubusercontent.com/zigtools/zls/master/schema.json
+-- - Documentation: https://zigtools.org/zls/configure/in-editor/
+vim.lsp.config.zls = {
+	settings = {
+		zls = {
+			enable_argument_placeholders = false,
+			zig_exe_path = "/usr/local/zig/zig",
 		},
 	},
 }

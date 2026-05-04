@@ -14,8 +14,6 @@ return {
 			"eslint_d",
 			"typstyle",
 			"codelldb",
-			"oxfmt",
-			"oxlint",
 
 			-- lsp
 			"lua-language-server",

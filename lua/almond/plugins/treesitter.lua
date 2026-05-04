@@ -23,6 +23,8 @@ return {
 			"query",
 			"vim",
 			"vimdoc",
+			"zig",
+			"typst",
 		})
 	end,
 }
