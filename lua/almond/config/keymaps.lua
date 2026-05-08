@@ -5,7 +5,7 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("n", "<leader>af", "=G", { desc = "[A]uto [F]ormatting" })
 
-keymap.set("n", "<leader><Esc>", ":noh<CR>", { silent = true })
+keymap.set("n", "<leader>:", ":noh<CR>", { silent = true })
 
 keymap.set("n", "<CR>", "o<ESC>", { desc = "Add line below" })
 
@@ -29,11 +29,6 @@ keymap.set("n", "<leader>T", function()
 	vim.cmd("startinsert")
 end, { desc = "[T]erminal of Here" })
 
--- Terminal mode mappings: FAILED
--- Map Escape or a custom key combination to exit terminal mode
--- vim.keymap.set("t", "<leader><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
--- Optional: Map a more convenient escape that doesn't interfere with shell programs
 keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 keymap.set("n", "<leader>ia", function()
