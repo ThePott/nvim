@@ -262,6 +262,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			file_ignore_patterns = {
 				"node_modules/.*",
 				"%.git/.*",
+				"zig%-pkg/",
 			},
 			layout_strategy = "horizontal",
 			layout_config = { height = 0.95, width = 0.95 },
