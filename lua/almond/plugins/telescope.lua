@@ -32,9 +32,11 @@ require("telescope").setup({
         },
         layout_strategy = "vertical",
         layout_config = {
-            preview_cutoff = 0,
             height = 0.95,
             width = 0.95,
+            mirror = true,
+            preview_cutoff = 0,
+            preview_height = 0.4,
         },
     },
 })
