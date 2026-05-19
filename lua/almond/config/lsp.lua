@@ -29,6 +29,7 @@ vim.lsp.config.tinymist = {
             enabled = true,
             when = "onType",
         },
+        rootPath = vim.fn.getcwd(),
     },
 }
 vim.lsp.config.tailwindcss = {

@@ -17,6 +17,7 @@ require("mason-tool-installer").setup({
             "codelldb",
             "oxfmt",
             "oxlint",
+            "typstyle",
 
             -- lsp
             "lua-language-server",
