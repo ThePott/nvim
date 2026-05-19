@@ -19,6 +19,7 @@ require("mason-tool-installer").setup({
             "oxfmt",
             "oxlint",
             "typstyle",
+            "sql-formatter",
 
             -- lsp
             "lua-language-server",
@@ -34,6 +35,7 @@ require("mason-tool-installer").setup({
             "tinymist",
             "clangd",
             "bash-language-server",
+            "sqlls",
         },
     },
 })

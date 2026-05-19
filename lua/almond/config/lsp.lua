@@ -12,6 +12,7 @@ vim.lsp.enable({
     "tinymist",
     "clangd",
     "bash-language-server",
+    "sqlls",
     -- "sourcekit",
 })
 
@@ -64,6 +65,19 @@ vim.lsp.config.tinymist = {
             when = "onType",
         },
         rootPath = vim.fn.getcwd(),
+    },
+}
+vim.lsp.config.sqlls = {
+    settings = {
+        -- tailwindCSS = {
+        --     experimental = {
+        --         classRegex = {
+        --             { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+        --             { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+        --             { "Record<[\\w\\s|,]+,\\s*TailwindCSS>\\s*=\\s*\\{([\\s\\S]*?)\\}", "[\"'`]([^\"'`]*).*?[\"'`]" },
+        --         },
+        --     },
+        -- },
     },
 }
 

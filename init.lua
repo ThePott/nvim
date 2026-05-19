@@ -4,7 +4,6 @@ vim.pack.add({
 require("ghostty-default-style-dark").setup({
     -- NOTE: must be called before colorscheme command
     on_highlights = function(highlights, colors)
-        print("working")
         highlights.DiagnosticUnnecessary = { fg = "#888888" }
         highlights.Visual = { bg = "#000000" }
     end,
