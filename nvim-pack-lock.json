@@ -53,6 +53,10 @@
       "rev": "117c301374ab8546891e2b34f63885ea83527432",
       "src": "https://www.github.com/nvim-mini/mini.diff"
     },
+    "nvim-lspconfig": {
+      "rev": "246572944c2a1e2a646c2e7609ff619b0fe74c18",
+      "src": "https://www.github.com/neovim/nvim-lspconfig"
+    },
     "nvim-material-icon": {
       "rev": "5e75c5e631cba8f0001f189af9d0d9beb5276501",
       "src": "https://github.com/DaikyXendo/nvim-material-icon"

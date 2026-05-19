@@ -15,6 +15,40 @@ vim.lsp.enable({
     -- "sourcekit",
 })
 
+vim.lsp.config.vtsls = {}
+vim.lsp.config.tailwindcss = {
+    settings = {
+        tailwindCSS = {
+            experimental = {
+                classRegex = {
+                    { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                    { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                    { "Record<[\\w\\s|,]+,\\s*TailwindCSS>\\s*=\\s*\\{([\\s\\S]*?)\\}", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                },
+            },
+        },
+    },
+}
+vim.lsp.config.pyright = {}
+vim.lsp.config.jsonls = {}
+vim.lsp.config.html = {}
+vim.lsp.config.emmet_ls = {}
+vim.lsp.config.prismals = {}
+vim.lsp.config.zls = {
+    -- Official ZLS Configuration:
+    -- - Schema: https://raw.githubusercontent.com/zigtools/zls/master/schema.json
+    -- - Documentation: https://zigtools.org/zls/configure/in-editor/
+    settings = {
+        zls = {
+            enable_argument_placeholders = false,
+            zig_exe_path = "/usr/local/zig/zig",
+        },
+    },
+}
+vim.lsp.config.vimls = {}
+vim.lsp.config.tinymist = {}
+vim.lsp.config.clangd = {}
+vim.lsp.config.bashls = {}
 vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
 vim.lsp.config.tinymist = {
     -- https://github.com/Myriad-Dreamin/tinymist/blob/main/editors/neovim/Configuration.md
@@ -32,31 +66,7 @@ vim.lsp.config.tinymist = {
         rootPath = vim.fn.getcwd(),
     },
 }
-vim.lsp.config.tailwindcss = {
-    settings = {
-        tailwindCSS = {
-            experimental = {
-                classRegex = {
-                    { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                    { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                    { "Record<[\\w\\s|,]+,\\s*TailwindCSS>\\s*=\\s*\\{([\\s\\S]*?)\\}", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                },
-            },
-        },
-    },
-}
 
-vim.lsp.config.zls = {
-    -- Official ZLS Configuration:
-    -- - Schema: https://raw.githubusercontent.com/zigtools/zls/master/schema.json
-    -- - Documentation: https://zigtools.org/zls/configure/in-editor/
-    settings = {
-        zls = {
-            enable_argument_placeholders = false,
-            zig_exe_path = "/usr/local/zig/zig",
-        },
-    },
-}
 -- vim.lsp.config.sourcekit = {
 -- 	capabilities = {
 -- 		workspace = {

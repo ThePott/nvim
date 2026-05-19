@@ -1,4 +1,5 @@
 vim.pack.add({
+    "https://www.github.com/neovim/nvim-lspconfig",
     "https://www.github.com/mason-org/mason.nvim",
     "https://www.github.com/mason-org/mason-lspconfig.nvim",
     "https://www.github.com/jay-babu/mason-nvim-dap.nvim",
