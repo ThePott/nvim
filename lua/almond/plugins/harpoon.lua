@@ -22,7 +22,6 @@ vim.keymap.set("n", "<leader>ho", function()
 end, { desc = "[H]arpoon [O]pen" })
 
 vim.keymap.set("n", "<M-n>", function()
-    print("harpoon works")
     harpoon:list():select(1)
 end, {
     desc = "Harpoon to File 1",
