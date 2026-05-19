@@ -1,7 +1,7 @@
 vim.diagnostic.open_float()
 vim.diagnostic.config({
     virtual_text = true,
-    -- virtual_lines = { 
+    -- virtual_lines = {
     --     current_line = true,
     --     format = function(diagnostic)
     --         -- Split long messages into multiple lines

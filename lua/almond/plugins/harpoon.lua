@@ -1,88 +1,71 @@
-return {
-	"ThePrimeagen/harpoon",
-	branch = "harpoon2",
-	opts = {
-		menu = {
-			width = vim.api.nvim_win_get_width(0) - 4,
-		},
-		settings = {
-			save_on_toggle = true,
-		},
-	},
-	keys = function()
-		local keys = {
-			{
-				"<leader>hf",
-				function()
-					require("harpoon"):list():add()
-				end,
-				desc = "[H]arpoon [F]ile",
-			},
-			{
-				"<leader>ho",
-				function()
-					local harpoon = require("harpoon")
-					harpoon.ui:toggle_quick_menu(harpoon:list())
-				end,
-				desc = "[H]arpoon [O]pen",
-			},
-			{
-				"<M-n>",
-				function()
-					require("harpoon"):list():select(1)
-				end,
-				desc = "Harpoon to File 1",
-			},
-			{
-				"<M-m>",
-				function()
-					require("harpoon"):list():select(2)
-				end,
-				desc = "Harpoon to File 2",
-			},
-			{
-				"<M-,>",
-				function()
-					require("harpoon"):list():select(3)
-				end,
-				desc = "Harpoon to File 3",
-			},
-			{
-				"<M-.>",
-				function()
-					require("harpoon"):list():select(4)
-				end,
-				desc = "Harpoon to File 4",
-			},
-			{
-				"<M-h>",
-				function()
-					require("harpoon"):list():select(5)
-				end,
-				desc = "Harpoon to File 5",
-			},
-			{
-				"<M-j>",
-				function()
-					require("harpoon"):list():select(6)
-				end,
-				desc = "Harpoon to File 6",
-			},
-			{
-				"<M-k>",
-				function()
-					require("harpoon"):list():select(7)
-				end,
-				desc = "Harpoon to File 5",
-			},
-			{
-				"<M-l>",
-				function()
-					require("harpoon"):list():select(8)
-				end,
-				desc = "Harpoon to File 6",
-			},
-		}
-		return keys
-	end,
-}
+vim.pack.add({
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2", name = "harpoon" },
+})
+
+local harpoon = require("harpoon")
+harpoon.setup({
+    menu = {
+        width = vim.api.nvim_win_get_width(0) - 4,
+    },
+    settings = {
+        save_on_toggle = true,
+    },
+})
+
+vim.keymap.set("n", "<leader>hf", function()
+    harpoon:list():add()
+end, { desc = "[H]arpoon [F]ile" })
+
+vim.keymap.set("n", "<leader>ho", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "[H]arpoon [O]pen" })
+
+vim.keymap.set("n", "<M-n>", function()
+    print("harpoon works")
+    harpoon:list():select(1)
+end, {
+    desc = "Harpoon to File 1",
+})
+
+vim.keymap.set("n", "<M-m>", function()
+    harpoon:list():select(2)
+end, {
+    desc = "Harpoon to File 2",
+})
+
+vim.keymap.set("n", "<M-,>", function()
+    harpoon:list():select(3)
+end, {
+    desc = "Harpoon to File 3",
+})
+
+vim.keymap.set("n", "<M-.>", function()
+    harpoon:list():select(4)
+end, {
+    desc = "Harpoon to File 4",
+})
+
+vim.keymap.set("n", "<M-h>", function()
+    harpoon:list():select(5)
+end, {
+    desc = "Harpoon to File 5",
+})
+
+vim.keymap.set("n", "<M-j>", function()
+    harpoon:list():select(6)
+end, {
+    desc = "Harpoon to File 6",
+})
+
+vim.keymap.set("n", "<M-k>", function()
+    harpoon:list():select(7)
+end, {
+    desc = "Harpoon to File 5",
+})
+
+vim.keymap.set("n", "<M-l>", function()
+    harpoon:list():select(8)
+end, {
+    desc = "Harpoon to File 6",
+})

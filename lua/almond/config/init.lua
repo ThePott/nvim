@@ -1,7 +1,0 @@
-require("almond.config.options")
-require("almond.config.keymaps")
-require("almond.config.lazy")
-require("almond.config.lsp")
-require("almond.config.diagnostic")
-require("almond.config.netrw")
-require("almond.config.autocommands")

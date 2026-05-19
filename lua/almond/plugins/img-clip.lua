@@ -1,12 +1,5 @@
-return {
-	"HakonHarnes/img-clip.nvim",
-	event = "VeryLazy",
-	opts = {
-		-- add options here
-		-- or leave it empty to use the default settings
-	},
-	keys = {
-		-- suggested keymap
-		{ "<leader>pi", "<cmd>PasteImage<cr>", desc = "[P]aste [I]mage from system clipboard" },
-	},
-}
+vim.pack.add({
+    "https://www.github.com/HakonHarnes/img-clip.nvim",
+})
+
+vim.keymap.set("n", "<leader>pi", "<cmd>PasteImage<cr>", { desc = "[P]aste [I]mage from system clipboard" })

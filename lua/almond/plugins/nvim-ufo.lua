@@ -1,96 +1,91 @@
-return {
-	"kevinhwang91/nvim-ufo",
-	event = "VeryLazy",
-	dependencies = {
-		"kevinhwang91/promise-async",
-	},
-	config = function()
-		vim.o.foldcolumn = "0"
-		vim.o.foldlevelstart = 99
-		vim.o.foldenable = true
-		vim.o.foldmethod = "syntax"
-		vim.o.foldlevel = 99
-		vim.o.foldnestmax = 1 -- Avoids nested folds if = 1
+vim.pack.add({ "https://www.github.com/kevinhwang91/promise-async", "https://www.github.com/kevinhwang91/nvim-ufo" })
 
-		-- TODO: Redo fillchars
+vim.o.foldcolumn = "0"
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = "syntax"
+vim.o.foldlevel = 99
+vim.o.foldnestmax = 1 -- Avoids nested folds if = 1
 
-		-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- TODO: Redo fillchars
 
-		-- za toggles single folds. Just using zc instead
-		vim.api.nvim_set_keymap("n", "zc", "za", { noremap = true, silent = true })
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-		vim.keymap.set("n", "<leader>1", ":lua require('ufo').closeFoldsWith(0)<cr>", { desc = "1st Lvl Close Fold" })
-		vim.keymap.set("n", "<leader>2", ":lua require('ufo').closeFoldsWith(1)<cr>", { desc = "2nd Lvl Close Fold" })
-		vim.keymap.set("n", "<leader>3", ":lua require('ufo').closeFoldsWith(2)<cr>", { desc = "3rd Lvl Close Fold" })
-		vim.keymap.set("n", "<leader>4", ":lua require('ufo').closeFoldsWith(3)<cr>", { desc = "4th Lvl Close Fold" })
-		vim.keymap.set("n", "<leader>5", ":lua require('ufo').closeFoldsWith(4)<cr>", { desc = "5th Lvl Close Fold" })
-		vim.keymap.set("n", "<leader>6", ":lua require('ufo').closeFoldsWith(5)<cr>", { desc = "6th Lvl Close Fold" })
+-- za toggles single folds. Just using zc instead
+vim.api.nvim_set_keymap("n", "zc", "za", { noremap = true, silent = true })
 
-		vim.api.nvim_create_autocmd({ "WinNew" }, {
-			group = vim.api.nvim_create_augroup("Fold", { clear = true }),
-			callback = function()
-				if
-					vim.o.filetype == "help ss"
-					or vim.o.filetype == "dashboard"
-					or vim.o.filetype == "telescope"
-					or vim.o.filetype == "terminal"
-				then
-					return
-				end
-				-- print("folding............") this is what
-				-- print("folding............")
-				-- print("folding............")
-				-- print("folding............")
-				-- pcall(vim.cmd, '%foldclose!') -- This closes all possible folds
-				pcall(vim.cmd, "%foldclose") -- This is to close only the outer level fold
-			end,
-		})
+vim.keymap.set("n", "<leader>0", ":lua require('ufo').openAllFolds()<cr>", { desc = "Open all folds" })
+vim.keymap.set("n", "<leader>1", ":lua require('ufo').closeFoldsWith(0)<cr>", { desc = "1st Lvl Close Fold" })
+vim.keymap.set("n", "<leader>2", ":lua require('ufo').closeFoldsWith(1)<cr>", { desc = "2nd Lvl Close Fold" })
+vim.keymap.set("n", "<leader>3", ":lua require('ufo').closeFoldsWith(2)<cr>", { desc = "3rd Lvl Close Fold" })
+vim.keymap.set("n", "<leader>4", ":lua require('ufo').closeFoldsWith(3)<cr>", { desc = "4th Lvl Close Fold" })
+vim.keymap.set("n", "<leader>5", ":lua require('ufo').closeFoldsWith(4)<cr>", { desc = "5th Lvl Close Fold" })
+vim.keymap.set("n", "<leader>6", ":lua require('ufo').closeFoldsWith(5)<cr>", { desc = "6th Lvl Close Fold" })
 
-		local handler = function(virtText, lnum, endLnum, width, truncate)
-			local newVirtText = {}
-			local suffix = ("  ↙ %d "):format(endLnum - lnum)
-			local sufWidth = vim.fn.strdisplaywidth(suffix)
-			local targetWidth = width - sufWidth
-			local curWidth = 0
-			for _, chunk in ipairs(virtText) do
-				local chunkText = chunk[1]
-				local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-				if targetWidth > curWidth + chunkWidth then
-					table.insert(newVirtText, chunk)
-				else
-					chunkText = truncate(chunkText, targetWidth - curWidth)
-					local hlGroup = chunk[2]
-					table.insert(newVirtText, { chunkText, hlGroup })
-					chunkWidth = vim.fn.strdisplaywidth(chunkText)
-					-- str width returned from truncate() may less than 2nd argument, need padding
-					if curWidth + chunkWidth < targetWidth then
-						suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-					end
-					break
-				end
-				curWidth = curWidth + chunkWidth
-			end
-			table.insert(newVirtText, { suffix, "MoreMsg" })
-			return newVirtText
-		end
+vim.api.nvim_create_autocmd({ "WinNew" }, {
+    group = vim.api.nvim_create_augroup("Fold", { clear = true }),
+    callback = function()
+        if
+            vim.o.filetype == "help ss"
+            or vim.o.filetype == "dashboard"
+            or vim.o.filetype == "telescope"
+            or vim.o.filetype == "terminal"
+        then
+            return
+        end
+        -- print("folding............") this is what
+        -- print("folding............")
+        -- print("folding............")
+        -- print("folding............")
+        -- pcall(vim.cmd, '%foldclose!') -- This closes all possible folds
+        pcall(vim.cmd, "%foldclose") -- This is to close only the outer level fold
+    end,
+})
 
-		-- Option 3: treesitter as a main provider instead
-		-- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
-		-- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ("  ↙ %d "):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, "MoreMsg" })
+    return newVirtText
+end
 
-		require("ufo").setup({
-			fold_virt_text_handler = handler,
-			provider_selector = function(bufnr, filetype, buftype)
-				return { "treesitter", "indent" }
-			end,
-			preview = {
-				win_config = {
-					border = { "", "─", "", "", "", "─", "", "" },
-					winhighlight = "Normal:Folded",
-					winblend = 0,
-				},
-			},
-			open_fold_hl_timeout = 0,
-		})
-	end,
-}
+-- Option 3: treesitter as a main provider instead
+-- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
+-- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
+
+require("ufo").setup({
+    event = "VeryLazy",
+    fold_virt_text_handler = handler,
+    provider_selector = function(bufnr, filetype, buftype)
+        return { "treesitter", "indent" }
+    end,
+    preview = {
+        win_config = {
+            border = { "", "─", "", "", "", "─", "", "" },
+            winhighlight = "Normal:Folded",
+            winblend = 0,
+        },
+    },
+    open_fold_hl_timeout = 0,
+})
