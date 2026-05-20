@@ -12,7 +12,8 @@ vim.lsp.enable({
     "tinymist",
     "clangd",
     "bash-language-server",
-    "sqlls",
+    "sqls",
+    "syntaqlite",
     -- "sourcekit",
 })
 
@@ -67,20 +68,14 @@ vim.lsp.config.tinymist = {
         rootPath = vim.fn.getcwd(),
     },
 }
-vim.lsp.config.sqlls = {
-    settings = {
-        -- tailwindCSS = {
-        --     experimental = {
-        --         classRegex = {
-        --             { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-        --             { "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-        --             { "Record<[\\w\\s|,]+,\\s*TailwindCSS>\\s*=\\s*\\{([\\s\\S]*?)\\}", "[\"'`]([^\"'`]*).*?[\"'`]" },
-        --         },
-        --     },
-        -- },
-    },
+vim.lsp.config.sqls = {
+    cmd = { "sqls", "-config", vim.fn.getcwd() .. "/sqlsrc.json" },
 }
-
+vim.lsp.config.syntaqlite = {
+    cmd = { "syntaqlite", "lsp" },
+    filetypes = { "sql" },
+    root_markers = { "syntaqlite.toml", ".git" },
+}
 -- vim.lsp.config.sourcekit = {
 -- 	capabilities = {
 -- 		workspace = {
