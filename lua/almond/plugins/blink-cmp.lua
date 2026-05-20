@@ -4,6 +4,7 @@ vim.pack.add({
 })
 
 local cmp = require("blink.cmp")
+cmp.build():wait(60000)
 cmp.setup({
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
     -- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -50,5 +51,3 @@ cmp.setup({
     -- See the fuzzy documentation for more information
     fuzzy = { implementation = "prefer_rust_with_warning" },
 })
-cmp.build():wait(60000)
-cmp.setup()
