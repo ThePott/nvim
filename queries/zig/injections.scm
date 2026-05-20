@@ -1,5 +1,4 @@
-;; Single-line strings
-;;//;; extends
+; single line embedded
 ((call_expression
   function: (field_expression
     object: (identifier) @db_obj
@@ -11,7 +10,7 @@
  (#set! injection.language "sql")
  )
 
-;; extends
+; multi line embedded
 ((call_expression
   function: (field_expression
     object: (identifier) @db_obj
