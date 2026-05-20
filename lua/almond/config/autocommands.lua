@@ -13,6 +13,12 @@ nvim_create_autocmd("FileType", {
     end,
 })
 
+nvim_create_autocmd("FileType", {
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
+
 nvim_create_autocmd("InsertEnter", {
     -- pattern = "*.zig",
     callback = function()

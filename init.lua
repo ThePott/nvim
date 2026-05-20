@@ -6,6 +6,7 @@ require("ghostty-default-style-dark").setup({
     on_highlights = function(highlights, colors)
         highlights.DiagnosticUnnecessary = { fg = "#888888" }
         highlights.Visual = { bg = "#000000" }
+        highlights["@lsp.type.string.zig"] = {}
     end,
 })
 vim.cmd("colorscheme ghostty-default-style-dark")
