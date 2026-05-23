@@ -44,6 +44,7 @@ cmp.setup({
         default = { "lsp", "path", "snippets", "buffer" },
         per_filetype = {
             sql = { "lsp", "path", "snippets", "buffer", "dadbod" },
+            zig = { "lsp", "path", "snippets", "buffer", "dadbod" },
         },
         -- add vim-dadbod-completion to your completion providers
         providers = {
