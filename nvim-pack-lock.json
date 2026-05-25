@@ -12,6 +12,10 @@
       "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
       "src": "https://www.github.com/stevearc/conform.nvim"
     },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
     "ghostty-default-style-dark.nvim": {
       "rev": "b09d4d51f614cd1c14444d8586e0ba3ba3119787",
       "src": "https://github.com/nkxxll/ghostty-default-style-dark.nvim"
