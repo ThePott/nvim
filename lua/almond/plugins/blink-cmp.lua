@@ -36,6 +36,18 @@ cmp.setup({
     completion = {
         documentation = { auto_show = true },
         accept = { auto_brackets = { enabled = false } },
+        -- trigger = { show_on_blocked_trigger_characters = {}, show_on_insert_on_trigger_character = true },
+        trigger = {
+            show_in_snippet = true,
+            show_on_keyword = true,
+            show_on_trigger_character = true,
+        },
+
+        -- menu = { auto_show = true },
+        -- trigger = {
+        --     show_on_keyword = false, -- Disable waiting for the keyword regex
+        --     show_on_trigger_character = true,
+        -- },
     },
     signature = { enabled = true },
 

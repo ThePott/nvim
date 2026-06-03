@@ -17,6 +17,7 @@ vim.lsp.enable({
     -- "sourcekit",
 })
 
+vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
 vim.lsp.config.vtsls = {}
 vim.lsp.config.tailwindcss = {
     settings = {
@@ -51,7 +52,6 @@ vim.lsp.config.vimls = {}
 vim.lsp.config.tinymist = {}
 vim.lsp.config.clangd = {}
 vim.lsp.config.bashls = {}
-vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
 vim.lsp.config.tinymist = {
     -- https://github.com/Myriad-Dreamin/tinymist/blob/main/editors/neovim/Configuration.md
     cmd = { "tinymist" },
@@ -85,3 +85,5 @@ vim.lsp.config.syntaqlite = {
 -- 		},
 -- 	},
 -- }
+--
+--
