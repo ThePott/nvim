@@ -14,7 +14,7 @@ vim.lsp.enable({
     "bash-language-server",
     "sqls",
     "syntaqlite",
-    -- "sourcekit",
+    "sourcekit",
 })
 
 vim.lsp.config.lua_ls = { settings = { Lua = { diagnostics = { globals = { "vim" } } } } }
@@ -77,13 +77,11 @@ vim.lsp.config.syntaqlite = {
     root_markers = { "syntaqlite.toml", ".git" },
 }
 -- vim.lsp.config.sourcekit = {
--- 	capabilities = {
--- 		workspace = {
--- 			didChangeWatchedFiles = {
--- 				dynamicRegistration = true,
--- 			},
--- 		},
--- 	},
+--     capabilities = {
+--         workspace = {
+--             didChangeWatchedFiles = {
+--                 dynamicRegistration = true,
+--             },
+--         },
+--     },
 -- }
---
---

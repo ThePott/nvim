@@ -61,6 +61,10 @@
       "rev": "117c301374ab8546891e2b34f63885ea83527432",
       "src": "https://www.github.com/nvim-mini/mini.diff"
     },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-dap": {
       "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
       "src": "https://www.github.com/mfussenegger/nvim-dap"
@@ -141,6 +145,10 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://www.github.com/folke/which-key.nvim"
+    },
+    "xcodebuild.nvim": {
+      "rev": "0c195e4ab249582b3712adbb664ea4bab9ff7ffe",
+      "src": "https://github.com/wojciech-kulik/xcodebuild.nvim"
     }
   }
 }

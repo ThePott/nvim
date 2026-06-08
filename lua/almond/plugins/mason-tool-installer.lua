@@ -36,6 +36,12 @@ require("mason-tool-installer").setup({
             "clangd",
             "bash-language-server",
             "sqlls",
+
+            -- ios specific
+            "xcode-build-server",
+            "swiftlint",
+            "xcbeautify",
+            "swiftformat",
         },
     },
 })
