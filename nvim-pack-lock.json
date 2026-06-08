@@ -29,6 +29,10 @@
       "rev": "b6ddfb97b5600d99afe3452d707444afda658aca",
       "src": "https://www.github.com/HakonHarnes/img-clip.nvim"
     },
+    "live-preview.nvim": {
+      "rev": "c1fcf75c5f9c9c01dd392852de44204b60f1b5b1",
+      "src": "https://github.com/brianhuster/live-preview.nvim"
+    },
     "lualine.nvim": {
       "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
       "src": "https://www.github.com/nvim-lualine/lualine.nvim"
