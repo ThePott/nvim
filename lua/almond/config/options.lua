@@ -29,3 +29,5 @@ opt.signcolumn = "yes:1" -- show sign column so that text doesn't shift
 -- split window
 opt.splitright = true -- New vertical splits go to the right
 opt.splitbelow = false -- Disable automatic horizontal splits
+
+opt.winborder = "rounded"
