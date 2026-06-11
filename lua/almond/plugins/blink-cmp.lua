@@ -7,11 +7,21 @@ vim.pack.add({
 local cmp = require("blink.cmp")
 cmp.build():wait(60000)
 cmp.setup({
-    keymap = { preset = "default" },
+    keymap = {
+        preset = "default",
+        ["<C-D>"] = { "scroll_documentation_down" },
+        ["<C-U>"] = { "scroll_documentation_up" },
+    },
     appearance = { nerd_font_variant = "mono" },
     completion = {
         menu = { auto_show = true },
-        documentation = { auto_show = true },
+        documentation = {
+            auto_show = true,
+            auto_show_delay_ms = 10,
+            window = {
+                max_height = 20,
+            },
+        },
         accept = { auto_brackets = { enabled = false } },
         trigger = {
             show_in_snippet = true,

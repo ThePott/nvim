@@ -149,6 +149,10 @@
     "xcodebuild.nvim": {
       "rev": "0c195e4ab249582b3712adbb664ea4bab9ff7ffe",
       "src": "https://github.com/wojciech-kulik/xcodebuild.nvim"
+    },
+    "zig.vim": {
+      "rev": "29f7a9b8a4e33f936b803de0b713683ad687a6c3",
+      "src": "https://codeberg.org/ziglang/zig.vim"
     }
   }
 }

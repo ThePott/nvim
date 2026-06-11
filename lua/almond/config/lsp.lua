@@ -7,7 +7,7 @@ vim.lsp.enable({
     "html-lsp",
     "emmet-ls",
     "prisma-language-server",
-    "zls",
+    -- "zls", // zls is configured in plugins.zls
     "vim-language-server",
     "tinymist",
     "clangd",
@@ -37,17 +37,17 @@ vim.lsp.config.jsonls = {}
 vim.lsp.config.html = {}
 vim.lsp.config.emmet_ls = {}
 vim.lsp.config.prismals = {}
-vim.lsp.config.zls = {
-    -- Official ZLS Configuration:
-    -- - Schema: https://raw.githubusercontent.com/zigtools/zls/master/schema.json
-    -- - Documentation: https://zigtools.org/zls/configure/in-editor/
-    settings = {
-        zls = {
-            enable_argument_placeholders = false,
-            zig_exe_path = "/usr/local/zig/zig",
-        },
-    },
-}
+-- vim.lsp.config.zls = {  --- zls is configured in plugins.zls
+--     -- Official ZLS Configuration:
+--     -- - Schema: https://raw.githubusercontent.com/zigtools/zls/master/schema.json
+--     -- - Documentation: https://zigtools.org/zls/configure/in-editor/
+--     settings = {
+--         zls = {
+--             enable_argument_placeholders = false,
+--             zig_exe_path = "/usr/local/zig/zig",
+--         },
+--     },
+-- }
 vim.lsp.config.vimls = {}
 vim.lsp.config.tinymist = {}
 vim.lsp.config.clangd = {}
@@ -76,12 +76,3 @@ vim.lsp.config.syntaqlite = {
     filetypes = { "sql" },
     root_markers = { "syntaqlite.toml", ".git" },
 }
--- vim.lsp.config.sourcekit = {
---     capabilities = {
---         workspace = {
---             didChangeWatchedFiles = {
---                 dynamicRegistration = true,
---             },
---         },
---     },
--- }
