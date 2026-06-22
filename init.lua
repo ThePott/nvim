@@ -7,6 +7,10 @@ require("ghostty-default-style-dark").setup({
         highlights.DiagnosticUnnecessary = { fg = "#888888" }
         highlights.Visual = { bg = "#000000" }
         highlights["@lsp.type.string.zig"] = {}
+        highlights.CursorLine = {
+            bg = "#1D2021", -- Sets the horizontal line background color (Hex format)
+            -- fg = "NONE", -- Keeps the default text foreground color unchanged
+        }
     end,
 })
 vim.cmd("colorscheme ghostty-default-style-dark")

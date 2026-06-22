@@ -31,3 +31,5 @@ opt.splitright = true -- New vertical splits go to the right
 opt.splitbelow = false -- Disable automatic horizontal splits
 
 opt.winborder = "rounded"
+
+opt.cursorline = true

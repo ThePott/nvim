@@ -42,7 +42,7 @@ nvim_create_autocmd("BufWritePre", {
 })
 
 local column_x_filler_namespace = vim.api.nvim_create_namespace("ColumnXFiller")
-vim.api.nvim_set_hl(0, "LineNrDim", { fg = "#222222" })
+vim.api.nvim_set_hl(0, "LineNrDim", { fg = "#1D2021" })
 local function fill_x()
     if vim.bo.buftype == "terminal" then
         return
@@ -62,23 +62,41 @@ local function fill_x()
     local current_line_number = get_current_line_number()
     print(current_line_number)
 
-    local vert_text_win_col = 60
-
     for i = vim.fn.line("w0"), vim.fn.line("w$") do
         local line_diff = math.abs(i - current_line_number)
-
+        if line_diff == 0 then
+            goto continue -- Jumps straight to the label below
+        end
         -- 1. Get the actual string on this line to check its length
         local line_text = vim.api.nvim_buf_get_lines(bufnr, i - 1, i, false)[1] or ""
 
         -- 2. Only draw the overlay if the line hasn't already reached column 80
-        if #line_text < vert_text_win_col then
+        if #line_text < 30 then
             vim.api.nvim_buf_set_extmark(bufnr, column_x_filler_namespace, i - 1, 0, {
                 virt_text = { { tostring(line_diff), "LineNrDim" } },
                 virt_text_pos = "overlay",
-                virt_text_win_col = vert_text_win_col, -- Placed at screen column 80
+                virt_text_win_col = 30, -- Placed at screen column 80
                 priority = 0, -- Gives it the absolute lowest rendering priority
             })
         end
+        if #line_text < 60 then
+            vim.api.nvim_buf_set_extmark(bufnr, column_x_filler_namespace, i - 1, 0, {
+                virt_text = { { tostring(line_diff), "LineNrDim" } },
+                virt_text_pos = "overlay",
+                virt_text_win_col = 60, -- Placed at screen column 80
+                priority = 0, -- Gives it the absolute lowest rendering priority
+            })
+        end
+        if #line_text < 90 then
+            vim.api.nvim_buf_set_extmark(bufnr, column_x_filler_namespace, i - 1, 0, {
+                virt_text = { { tostring(line_diff), "LineNrDim" } },
+                virt_text_pos = "overlay",
+                virt_text_win_col = 90, -- Placed at screen column 80
+                priority = 0, -- Gives it the absolute lowest rendering priority
+            })
+        end
+
+        ::continue::
     end
 end
 vim.api.nvim_create_autocmd({ "CursorMoved", "WinScrolled", "TextChanged" }, {
