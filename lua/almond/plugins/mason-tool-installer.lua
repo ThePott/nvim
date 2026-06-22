@@ -30,7 +30,8 @@ require("mason-tool-installer").setup({
             "html-lsp",
             "emmet-ls",
             "prisma-language-server",
-            "zls",
+            -- https://zigtools.org/zls/install/
+            -- "zls", -- NOTE: MUST INSTALL WITH PRE-BINARY THAT FITS ZIG VERSION
             "vim-language-server",
             "tinymist",
             "clangd",

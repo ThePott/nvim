@@ -22,6 +22,7 @@ local zig_configuratation = {
 }
 
 vim.pack.add({
+    "https://github.com/wojciech-kulik/xcodebuild.nvim", -- xcodebuild
     "https://www.github.com/julianolf/nvim-dap-lldb",
     "https://www.github.com/rcarriga/nvim-dap-ui",
     "https://www.github.com/nvim-neotest/nvim-nio",
@@ -66,3 +67,13 @@ vim.keymap.set("n", "<F3>", dap.step_over)
 vim.keymap.set("n", "<F4>", dap.step_out)
 vim.keymap.set("n", "<F5>", dap.step_back)
 vim.keymap.set("n", "<F13>", dap.restart)
+
+local xcodebuild = require("xcodebuild.integrations.dap")
+xcodebuild.setup()
+vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
+vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
+vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
+vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
+vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint, { desc = "Toggle Message Breakpoint" })
+vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
