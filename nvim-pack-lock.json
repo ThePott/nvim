@@ -25,6 +25,10 @@
       "src": "https://github.com/ThePrimeagen/harpoon",
       "version": "'harpoon2'"
     },
+    "hexinspector.nvim": {
+      "rev": "6aaac7cffd5a33a10680fb919a8afe5a7c5ba0af",
+      "src": "https://github.com/Punity122333/hexinspector.nvim"
+    },
     "img-clip.nvim": {
       "rev": "b6ddfb97b5600d99afe3452d707444afda658aca",
       "src": "https://www.github.com/HakonHarnes/img-clip.nvim"
@@ -69,6 +73,10 @@
       "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
       "src": "https://www.github.com/mfussenegger/nvim-dap"
     },
+    "nvim-dap-disasm": {
+      "rev": "b86a1e3f03f268635f9b362ccc8ffa5f240dd25d",
+      "src": "https://codeberg.org/Jorenar/nvim-dap-disasm"
+    },
     "nvim-dap-lldb": {
       "rev": "1f531bac2896b3d9ceb098b277c419c811f4609d",
       "src": "https://www.github.com/julianolf/nvim-dap-lldb"
@@ -76,6 +84,10 @@
     "nvim-dap-ui": {
       "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
       "src": "https://www.github.com/rcarriga/nvim-dap-ui"
+    },
+    "nvim-dap-view": {
+      "rev": "440ec66c2b26470ec97cd4d6667cdd4b51cbc7cb",
+      "src": "https://github.com/igorlfs/nvim-dap-view"
     },
     "nvim-lspconfig": {
       "rev": "246572944c2a1e2a646c2e7609ff619b0fe74c18",

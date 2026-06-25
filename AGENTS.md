@@ -107,3 +107,7 @@ Example — destructive op:
 ## Boundaries
 
 Code/commits/PRs: write normal. "stop caveman" or "normal mode": revert. Level persist until changed or session end.
+
+# DO NOT ASK FOR EXTERNAL ACCESS
+
+- if you need external information, such as source code of language, search it in codeberg or github

@@ -1,3 +1,10 @@
+vim.pack.add({
+    "https://www.github.com/mfussenegger/nvim-dap",
+    "https://www.github.com/julianolf/nvim-dap-lldb",
+    "https://github.com/igorlfs/nvim-dap-view",
+    "https://codeberg.org/Jorenar/nvim-dap-disasm",
+})
+
 local zig_configuratation = {
     name = "Launch file",
     type = "codelldb",
@@ -20,45 +27,11 @@ local zig_configuratation = {
     cwd = "${workspaceFolder}",
     stopOnEntry = false,
 }
-
-vim.pack.add({
-    "https://github.com/wojciech-kulik/xcodebuild.nvim", -- xcodebuild
-    "https://www.github.com/julianolf/nvim-dap-lldb",
-    "https://www.github.com/rcarriga/nvim-dap-ui",
-    "https://www.github.com/nvim-neotest/nvim-nio",
-    "https://www.github.com/mason-org/mason.nvim",
-    "https://www.github.com/mfussenegger/nvim-dap",
-})
-require("mason").setup({})
 require("dap-lldb").setup({
     configurations = {
         zig = zig_configuratation,
     },
 })
-local dapui = require("dapui")
-dapui.setup({
-    layouts = {
-        {
-            elements = {
-                {
-                    id = "repl",
-                    size = 0.3,
-                },
-                {
-                    id = "console",
-                    size = 0.3,
-                },
-                {
-                    id = "watches",
-                    size = 0.4,
-                },
-            },
-            position = "right",
-            size = 40,
-        },
-    },
-})
-
 local dap = require("dap")
 dap.adapters.codelldb = {
     type = "server",
@@ -74,17 +47,58 @@ dap.configurations.zig = {
     zig_configuratation,
 }
 
-vim.keymap.set("n", "<space>do", dapui.open) -- NOTE: leader dx : terminate
+local dapview = require("dap-view")
+require("dap-disasm").setup({})
+dapview.setup({
+    winbar = {
+        sections = { "watches", "disassembly", "scopes", "exceptions", "breakpoints", "threads", "repl" },
+        default_section = "watches",
+        custom_sections = { disassembly = { label = "", keymap = "D" } },
+        base_sections = {
+            --     -- Labels can be set dynamically with functions
+            --     -- Each function receives the window's width and the current section as arguments
+            breakpoints = { label = "", keymap = "B" },
+            scopes = { label = "", keymap = "S" },
+            exceptions = { label = "", keymap = "E" },
+            watches = { label = "", keymap = "W" },
+            threads = { label = "", keymap = "T" },
+            repl = { label = "", keymap = "R" },
+            sessions = { label = "", keymap = "K" },
+            console = { label = "", keymap = "C" },
+        },
+    },
+    windows = {
+        size = 0.5,
+        position = "right",
+        terminal = {
+            size = 0.3,
+            position = "below",
+            -- List of debug adapters for which the terminal should be ALWAYS hidden
+            -- Can also be set to "true" to never show the terminal
+            hide = {},
+        },
+    },
+})
 
-vim.keymap.set("n", "<space>dw", function()
-    dapui.elements.watches.add(vim.fn.expand("<cword>"))
-end) -- NOTE: leader dx : terminate
-vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
-vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
-vim.keymap.set("n", "<space>k", function()
-    -- Eval var under cursor
-    dapui.eval(nil, { enter = true })
-end)
+vim.keymap.set("n", "<leader>ds", function()
+    dap.continue()
+    dapview.open()
+end, { desc = "Debugger start" })
+vim.keymap.set("n", "<leader>do", dapview.open, { desc = "Debugger open" })
+vim.keymap.set("n", "<leader>dc", function()
+    dapview.close(true)
+end, { desc = "Debugger close" })
+vim.keymap.set("n", "<leader>dw", dapview.add_expr, { desc = "Debugger add to watch list" })
+vim.keymap.set("n", "<leader>k", dapview.hover, { desc = "Debugger hover on cursor" })
+
+vim.keymap.set("n", "<leader>dt", function()
+    dapview.close(true)
+    dap.terminate()
+end, { desc = "Debugger terminate" })
+
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
+
 vim.keymap.set("n", "<F1>", dap.continue)
 vim.keymap.set("n", "<F2>", dap.step_into)
 vim.keymap.set("n", "<F3>", dap.step_over)
@@ -92,12 +106,13 @@ vim.keymap.set("n", "<F4>", dap.step_out)
 vim.keymap.set("n", "<F5>", dap.step_back)
 vim.keymap.set("n", "<F13>", dap.restart)
 
-local xcodebuild = require("xcodebuild.integrations.dap")
-xcodebuild.setup()
-vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
-vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
-vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
-vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
-vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint, { desc = "Toggle Message Breakpoint" })
-vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
+-- TODO: check if this is nvim-dap-ui only or nvim-dap-view is also possible
+-- local xcodebuild = require("xcodebuild.integrations.dap")
+-- xcodebuild.setup()
+-- vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
+-- vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
+-- vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
+-- vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })
+-- vim.keymap.set("n", "<leader>b", xcodebuild.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+-- vim.keymap.set("n", "<leader>B", xcodebuild.toggle_message_breakpoint, { desc = "Toggle Message Breakpoint" })
+-- vim.keymap.set("n", "<leader>dx", xcodebuild.terminate_session, { desc = "Terminate Debugger" })
