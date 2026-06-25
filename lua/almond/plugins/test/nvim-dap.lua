@@ -29,16 +29,35 @@ vim.pack.add({
     "https://www.github.com/mason-org/mason.nvim",
     "https://www.github.com/mfussenegger/nvim-dap",
 })
-
 require("mason").setup({})
-
 require("dap-lldb").setup({
     configurations = {
         zig = zig_configuratation,
     },
 })
-local ui = require("dapui")
-ui.setup({})
+local dapui = require("dapui")
+dapui.setup({
+    layouts = {
+        {
+            elements = {
+                {
+                    id = "repl",
+                    size = 0.3,
+                },
+                {
+                    id = "console",
+                    size = 0.3,
+                },
+                {
+                    id = "watches",
+                    size = 0.4,
+                },
+            },
+            position = "right",
+            size = 40,
+        },
+    },
+})
 
 local dap = require("dap")
 dap.adapters.codelldb = {
@@ -55,11 +74,16 @@ dap.configurations.zig = {
     zig_configuratation,
 }
 
+vim.keymap.set("n", "<space>do", dapui.open) -- NOTE: leader dx : terminate
+
+vim.keymap.set("n", "<space>dw", function()
+    dapui.elements.watches.add(vim.fn.expand("<cword>"))
+end) -- NOTE: leader dx : terminate
 vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
 vim.keymap.set("n", "<space>k", function()
     -- Eval var under cursor
-    ui.eval(nil, { enter = true })
+    dapui.eval(nil, { enter = true })
 end)
 vim.keymap.set("n", "<F1>", dap.continue)
 vim.keymap.set("n", "<F2>", dap.step_into)
