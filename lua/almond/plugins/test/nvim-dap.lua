@@ -51,7 +51,7 @@ local dapview = require("dap-view")
 require("dap-disasm").setup({})
 dapview.setup({
     winbar = {
-        sections = { "watches", "disassembly", "scopes", "exceptions", "breakpoints", "threads", "repl" },
+        sections = { "watches", "disassembly", "console", "repl", "scopes", "exceptions", "breakpoints", "threads" },
         default_section = "watches",
         custom_sections = { disassembly = { label = "", keymap = "D" } },
         base_sections = {
