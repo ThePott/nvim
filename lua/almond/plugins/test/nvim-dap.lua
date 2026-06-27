@@ -107,9 +107,9 @@ vim.keymap.set("n", "<F5>", dap.step_back)
 vim.keymap.set("n", "<F13>", dap.restart)
 
 -- TODO: check if this is nvim-dap-ui only or nvim-dap-view is also possible
--- local xcodebuild = require("xcodebuild.integrations.dap")
--- xcodebuild.setup()
--- vim.keymap.set("n", "<leader>dd", xcodebuild.build_and_debug, { desc = "Build & Debug" })
+local xcodebuild = require("xcodebuild.integrations.dap")
+xcodebuild.setup()
+vim.keymap.set("n", "<leader>dr", xcodebuild.build_and_debug, { desc = "build, run, debug" })
 -- vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
 -- vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
 -- vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })

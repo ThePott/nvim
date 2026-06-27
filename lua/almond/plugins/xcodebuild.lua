@@ -1,6 +1,6 @@
 vim.pack.add({
     "https://github.com/MunifTanjim/nui.nvim",
-    "https://github.com/wojciech-kulik/xcodebuild.nvim",
+    "https://github.com/ThePott/forked__xcodebuild.nvim",
 })
 
 require("xcodebuild").setup({})

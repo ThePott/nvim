@@ -12,6 +12,10 @@
       "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
       "src": "https://www.github.com/stevearc/conform.nvim"
     },
+    "forked__xcodebuild.nvim": {
+      "rev": "8ab8f19db7599565ef75f1a4fa456a7e0a2142c5",
+      "src": "/Users/haheungju/custom-nvim-plugins/forked__xcodebuild.nvim"
+    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -157,10 +161,6 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://www.github.com/folke/which-key.nvim"
-    },
-    "xcodebuild.nvim": {
-      "rev": "0c195e4ab249582b3712adbb664ea4bab9ff7ffe",
-      "src": "https://github.com/wojciech-kulik/xcodebuild.nvim"
     }
   }
 }
