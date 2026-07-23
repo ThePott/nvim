@@ -70,13 +70,13 @@ dapview.setup({
     windows = {
         size = 0.5,
         position = "right",
-        terminal = {
-            size = 0.3,
-            position = "below",
-            -- List of debug adapters for which the terminal should be ALWAYS hidden
-            -- Can also be set to "true" to never show the terminal
-            hide = {},
-        },
+        -- terminal = {
+        --     size = 0.3,
+        --     position = "below",
+        --     -- List of debug adapters for which the terminal should be ALWAYS hidden
+        --     -- Can also be set to "true" to never show the terminal
+        --     hide = {},
+        -- },
     },
 })
 
@@ -106,10 +106,6 @@ vim.keymap.set("n", "<F4>", dap.step_out)
 vim.keymap.set("n", "<F5>", dap.step_back)
 vim.keymap.set("n", "<F13>", dap.restart)
 
--- TODO: check if this is nvim-dap-ui only or nvim-dap-view is also possible
-local xcodebuild = require("xcodebuild.integrations.dap")
-xcodebuild.setup()
-vim.keymap.set("n", "<leader>dr", xcodebuild.build_and_debug, { desc = "build, run, debug" })
 -- vim.keymap.set("n", "<leader>dr", xcodebuild.debug_without_build, { desc = "Debug Without Building" })
 -- vim.keymap.set("n", "<leader>dt", xcodebuild.debug_tests, { desc = "Debug Tests" })
 -- vim.keymap.set("n", "<leader>dT", xcodebuild.debug_class_tests, { desc = "Debug Class Tests" })

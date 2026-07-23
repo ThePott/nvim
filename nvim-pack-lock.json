@@ -12,10 +12,6 @@
       "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
       "src": "https://www.github.com/stevearc/conform.nvim"
     },
-    "forked__xcodebuild.nvim": {
-      "rev": "4cf88f94c71b5c4e5f63f583fb44fa7404b9a527",
-      "src": "https://github.com/ThePott/forked__xcodebuild.nvim"
-    },
     "friendly-snippets": {
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -84,10 +80,6 @@
     "nvim-dap-lldb": {
       "rev": "1f531bac2896b3d9ceb098b277c419c811f4609d",
       "src": "https://www.github.com/julianolf/nvim-dap-lldb"
-    },
-    "nvim-dap-ui": {
-      "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
-      "src": "https://www.github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-dap-view": {
       "rev": "440ec66c2b26470ec97cd4d6667cdd4b51cbc7cb",
@@ -161,6 +153,10 @@
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://www.github.com/folke/which-key.nvim"
+    },
+    "xcodebuild.nvim": {
+      "rev": "633eb71c0b354581837025581b7261dbe5361226",
+      "src": "https://github.com/wojciech-kulik/xcodebuild.nvim"
     }
   }
 }

@@ -1,9 +1,15 @@
 vim.pack.add({
     "https://github.com/MunifTanjim/nui.nvim",
-    "https://github.com/ThePott/forked__xcodebuild.nvim",
+    "https://github.com/wojciech-kulik/xcodebuild.nvim",
+    -- "https://github.com/ThePott/forked__xcodebuild.nvim",
+    -- "/Users/haheungju/custom-nvim-plugins/forked__xcodebuild.nvim",
 })
 
 require("xcodebuild").setup({})
+
+local xcodebuild = require("xcodebuild.integrations.dap")
+xcodebuild.setup()
+vim.keymap.set("n", "<leader>dr", xcodebuild.build_and_debug, { desc = "build, run, debug" })
 
 vim.keymap.set("n", "<leader>X", "<cmd>XcodebuildPicker<cr>", { desc = "Show Xcodebuild Actions" })
 vim.keymap.set("n", "<leader>xf", "<cmd>XcodebuildProjectManager<cr>", { desc = "Show Project Manager Actions" })
