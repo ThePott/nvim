@@ -5,7 +5,15 @@ vim.pack.add({
     -- "/Users/haheungju/custom-nvim-plugins/forked__xcodebuild.nvim",
 })
 
-require("xcodebuild").setup({})
+require("xcodebuild").setup({
+    project = {
+        config = {
+            ProjectSettings = {
+                buildDir = vim.loop.cwd(),
+            },
+        },
+    },
+})
 
 local xcodebuild = require("xcodebuild.integrations.dap")
 xcodebuild.setup()
