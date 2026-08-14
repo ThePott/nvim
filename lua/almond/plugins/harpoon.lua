@@ -59,16 +59,16 @@ end, {
     desc = "Harpoon to File 2",
 })
 
-vim.keymap.set("n", "<M-,>", function()
+vim.keymap.set("n", "<M-.>", function()
     harpoon:list():select(3)
 end, {
-    desc = "Harpoon to File 3",
+    desc = "Harpoon to File 4",
 })
 
-vim.keymap.set("n", "<M-.>", function()
+vim.keymap.set("n", "<M-,>", function()
     harpoon:list():select(4)
 end, {
-    desc = "Harpoon to File 4",
+    desc = "Harpoon to File 3",
 })
 
 vim.keymap.set("n", "<M-h>", function()
