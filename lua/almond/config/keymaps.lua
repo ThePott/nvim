@@ -15,20 +15,20 @@ keymap.set("i", "<M-CR>", "<ESC>O", { desc = "Add line above" })
 -- terminal related
 keymap.set("v", "<leader>y", '"+y', { desc = "yank to system clipboard" })
 
-vim.keymap.set("i", "<CR>", function()
-    local line = vim.api.nvim_get_current_line()
-    local col = vim.api.nvim_win_get_cursor(0)[2]
-
-    -- Check if cursor is between {}, [], or ()
-    local before = string.sub(line, col, col)
-    local after = string.sub(line, col + 1, col + 1)
-
-    if (before == "{" and after == "}") or (before == "[" and after == "]") or (before == "(" and after == ")") then
-        return "<CR><Esc>O"
-    end
-
-    return "<CR>"
-end, { expr = true, silent = true })
+-- vim.keymap.set("i", "<CR>", function()
+--     local line = vim.api.nvim_get_current_line()
+--     local col = vim.api.nvim_win_get_cursor(0)[2]
+--
+--     -- Check if cursor is between {}, [], or ()
+--     local before = string.sub(line, col, col)
+--     local after = string.sub(line, col + 1, col + 1)
+--
+--     if (before == "{" and after == "}") or (before == "[" and after == "]") or (before == "(" and after == ")") then
+--         return "<CR><Esc>O"
+--     end
+--
+--     return "<CR>"
+-- end, { expr = true, silent = true })
 
 keymap.set("n", "<leader>t", function()
     local current_working_directory = vim.loop.cwd()
